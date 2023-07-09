@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<VFECore.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_BrainCut</defName>
+		<label>brain cut</label>
+		<description>An intentional misuse of the reprogramming psycast which creates a permanent rift in the target’s brain. The damage scales with the target’s psychic sensitivity and always disorients for 2 seconds.</description>
+		<iconPath>Abilities/Puppeteer/BrainCut</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_BrainCut</abilityClass>
+		<targetMode>Pawn</targetMode>
+		<targetingParameters>
+			<canTargetSelf>False</canTargetSelf>
+			<canTargetAnimals>True</canTargetAnimals>
+			<canTargetPawns>True</canTargetPawns>
+			<canTargetHumans>True</canTargetHumans>
+			<canTargetMechs>False</canTargetMechs>
+		</targetingParameters>
+		<power>2</power>
+		<powerStatFactors>
+			<PsychicSensitivity>1</PsychicSensitivity>
+		</powerStatFactors>
+		<range>21</range>
+		<castTime>120</castTime>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>1</level>
+				<order>1</order>
+				<psyfocusCost>0.04</psyfocusCost>
+				<entropyGain>16</entropyGain>
+			</li>
+			<li Class="VPEPuppeteer.AbilityExtension_TargetValidator">
+				<notOfCasterFaction>True</notOfCasterFaction>
+			</li>
+		</modExtensions>
+	</VFECore.Abilities.AbilityDef>
+
+	<VFECore.Abilities.AbilityDef ParentName="VPE_PsycastGoToTargetBase">
+		<defName>VPEP_BrainLeech</defName>
+		<label>brain leech</label>
+		<description>Creates a psionic link on a colleague or prisoner that redirects brain processing power to the leacher. The effect is inefficient and reaches its maximum after 2 days before fading into obscurity. Only a single leech can be maintained.</description>
+		<iconPath>Abilities/Puppeteer/BrainLeech</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_BrainLeech</abilityClass>
+		<targetMode>Pawn</targetMode>
+		<distanceToTarget>1.5</distanceToTarget>
+		<needsTicking>true</needsTicking>
+		<drawAimPie>false</drawAimPie>
+		<targetingParameters>
+			<canTargetSelf>False</canTargetSelf>
+			<canTargetAnimals>False</canTargetAnimals>
+			<canTargetPawns>True</canTargetPawns>
+			<canTargetHumans>True</canTargetHumans>
+			<canTargetMechs>False</canTargetMechs>
+		</targetingParameters>
+		<castTime>300</castTime>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>1</level>
+				<order>2</order>
+				<psyfocusCost>0.4</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<psychic>True</psychic>
+			</li>
+			<li Class="VPEPuppeteer.AbilityExtension_TargetValidator">
+				<ofCasterFaction>True</ofCasterFaction>
+			</li>
+		</modExtensions>
+	</VFECore.Abilities.AbilityDef>
+</Defs>

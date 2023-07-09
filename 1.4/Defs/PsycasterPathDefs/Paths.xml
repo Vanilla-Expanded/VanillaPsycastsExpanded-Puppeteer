@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <VanillaPsycastsExpanded.PsycasterPathDef>
+    <defName>VPEP_Puppeteer</defName>
+    <label>puppeteer</label>
+    <description>The most sacred of the tribal professions, animats are in direct psychic contact with the anima trees. They can connect to the tree and use it to their advantage, be it through creating powerful anima screams that resonate like an echo from every tree and obelisk in range, or by imprinting the anima tree with the psycasting knowledge, essentially teaching the tree how to be a psycaster itself.</description>
+    <background>UI/Backgrounds/PuppeteerPath</background>
+    <altBackground>UI/AlternativeBackgrounds/PathBG_Puppeteer</altBackground>
+    <tab>Psycasts</tab>
+    <tooltip>The most sacred of the tribal professions, animats are in direct psychic contact with the anima trees. They can connect to the tree and use it to their advantage, be it through creating powerful anima screams that resonate like an echo from every tree and obelisk in range, or by imprinting the anima tree with the psycasting knowledge, essentially teaching the tree how to be a psycaster itself.</tooltip>
+    <lockedReason>Imperials only</lockedReason>
+    <requiredBackstoriesAny>
+      <li>
+        <categoryName>ImperialFighter</categoryName>
+        <slot>Childhood</slot>
+      </li>
+      <li>
+        <categoryName>ImperialFighter</categoryName>
+        <slot>Adulthood</slot>
+      </li>
+      <li>
+        <categoryName>ImperialRoyal</categoryName>
+        <slot>Childhood</slot>
+      </li>
+      <li>
+        <categoryName>ImperialRoyal</categoryName>
+        <slot>Adulthood</slot>
+      </li>
+    </requiredBackstoriesAny>
+  </VanillaPsycastsExpanded.PsycasterPathDef>
+
+</Defs>

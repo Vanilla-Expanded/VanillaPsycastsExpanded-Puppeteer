@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguagData>
+
+	<VPEP.TargetCannotBeSameFactionAsCaster>Target cannot be from the same faction as the caster.</VPEP.TargetCannotBeSameFactionAsCaster>
+	<VPEP.TargetMustBeSameFactionAsCaster>Target must be prisoner or come from the same faction as the caster.</VPEP.TargetMustBeSameFactionAsCaster>
+</LanguagData>
