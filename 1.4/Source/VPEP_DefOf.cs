@@ -10,5 +10,11 @@ namespace VPEPuppeteer
         public static HediffDef VPEP_BrainLeech;
         public static HediffDef VPEP_Leeching;
         public static EffecterDef VPEP_PsycastSkipFlashPurple;
+        public static MentalBreakDef RunWild;
+        public static ThingDef VPEP_DegradePsychicWarp;
+        public static JobDef VPEP_StripGear;
+        public static HediffDef VPEP_Puppeteer;
+        public static HediffDef VPEP_Puppet;
+        public static ThingDef VPEP_PsycastAreaEffect;
     }
 }

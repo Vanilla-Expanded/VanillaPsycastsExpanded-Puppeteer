@@ -10,6 +10,7 @@ namespace VPEPuppeteer
         public VPEPuppeteerMod(ModContentPack pack) : base(pack)
         {
 			new Harmony("VPEPuppeteerMod").PatchAll();
+            Log.Message("Color.magenta: " + Color.magenta);
         }
     }
 }

@@ -15,5 +15,60 @@
 			<attachedToHead>True</attachedToHead>
 		</mote>
 	</ThingDef>
+
+	<ThingDef ParentName="MoteGlowDistortBackground">
+		<defName>VPEP_DegradePsychicWarp</defName>
+		<thingClass>VanillaPsycastsExpanded.MoteAttachedScaled</thingClass>
+		<altitudeLayer>MoteLow</altitudeLayer>
+		<mote>
+			<fadeInTime>0.02</fadeInTime>
+			<fadeOutTime>0.6</fadeOutTime>
+			<solidTime>99999999</solidTime>
+			<growthRate>1</growthRate>
+			<needsMaintenance>true</needsMaintenance>
+		</mote>
+		<graphicData>
+			<texPath>Things/Mote/Black</texPath>
+			<shaderParameters>
+				<_distortionIntensity>0.024</_distortionIntensity>
+				<_brightnessMultiplier>1.1</_brightnessMultiplier>
+			</shaderParameters>
+			<drawSize>2.2</drawSize>
+		</graphicData>
+	</ThingDef>
 	
+	<ThingDef ParentName="MoteGlowDistortBackground">
+		<defName>VPEP_PsycastAreaEffect</defName>
+		<thingClass>VanillaPsycastsExpanded.MoteAttachedScaled</thingClass>
+		<altitudeLayer>MoteLow</altitudeLayer>
+		<mote>
+			<fadeInTime>0.02</fadeInTime>
+			<fadeOutTime>0.6</fadeOutTime>
+			<growthRate>5</growthRate>
+			<solidTime>100</solidTime>
+		</mote>
+		<graphicData>
+			<texPath>Things/Mote/Black</texPath>
+			<shaderParameters>
+				<_distortionIntensity>0.05</_distortionIntensity>
+				<_brightnessMultiplier>1.15</_brightnessMultiplier>
+			</shaderParameters>
+			<drawSize>2.2</drawSize>
+		</graphicData>
+	</ThingDef>
+	
+	<ThingDef ParentName="MoteGlowDistorted">
+		<defName>VPEP_PsycastCastPurple</defName>
+		<thingClass>MoteThrownAttached</thingClass>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<fadeInTime>0.3</fadeInTime>
+			<fadeOutTime>0.1</fadeOutTime>
+			<solidTime>9999</solidTime>
+			<needsMaintenance>true</needsMaintenance>
+		</mote>
+		<graphicData>
+			<texPath>Effects/Puppeteer/PsycastCastPurple/PsycastCastPurple</texPath>
+		</graphicData>
+	</ThingDef>
 </Defs>

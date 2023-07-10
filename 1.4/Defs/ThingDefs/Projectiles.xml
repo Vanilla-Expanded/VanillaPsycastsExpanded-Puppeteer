@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>VPEP_Degrade</defName>
+		<label>degrade</label>
+		<thingClass>VPEPuppeteer.Degrade</thingClass>
+		<tickerType>Normal</tickerType>
+		<altitudeLayer>VisEffects</altitudeLayer>
+		<drawOffscreen>true</drawOffscreen>
+		<graphicData>
+			<texPath>Effects/Puppeteer/Degrade/DegradeProjectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Cut</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<speed>20</speed>
+		</projectile>
+		<comps>
+			<li Class="VFECore.CompProperties_HomingProjectile">
+				<homingDistanceFractionPassed>0</homingDistanceFractionPassed>
+				<homingCorrectionTickRate>1</homingCorrectionTickRate>
+				<initialDispersionFromTarget>0</initialDispersionFromTarget>
+			</li>
+		</comps>
+	</ThingDef>
+
+</Defs>

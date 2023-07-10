@@ -55,7 +55,7 @@
 			</li>
 		</stages>
 	</HediffDef>
-	
+
 	<HediffDef>
 		<defName>VPEP_Leeching</defName>
 		<label>Leeching</label>
@@ -110,5 +110,113 @@
 			</li>
 		</stages>
 	</HediffDef>
-	
+
+	<HediffDef ParentName="PsycastHediffBase">
+		<defName>VPEP_Subjugation</defName>
+		<label>subjugation</label>
+		<description>text.todo.</description>
+		<hediffClass>VPEPuppeteer.Hediff_Subjugation</hediffClass>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.0714</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<label>minor</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Breathing</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.666</minSeverity>
+				<label>major</label>
+				<vomitMtbDays>1.5</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Breathing</capacity>
+						<offset>-0.15</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.833</minSeverity>
+				<label>extreme</label>
+				<vomitMtbDays>0.75</vomitMtbDays>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.15</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.2</offset>
+					</li>
+					<li>
+						<capacity>Breathing</capacity>
+						<offset>-0.2</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>VPEP_Puppeteer</defName>
+		<label>Puppeteer</label>
+		<description>text.todo.</description>
+		<hediffClass>VPEPuppeteer.Hediff_Puppeteer</hediffClass>
+		<isBad>False</isBad>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>VPEP_Puppet</defName>
+		<label>Puppet</label>
+		<description>text.todo.</description>
+		<hediffClass>VPEPuppeteer.Hediff_Puppet</hediffClass>
+		<isBad>False</isBad>
+		<stages>
+			<li>
+				<disabledWorkTags>
+					<li>Social</li>
+					<li>Artistic</li>
+					<li>Crafting</li>
+					<li>Intellectual</li>
+				</disabledWorkTags>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.3</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="VanillaPsycastsExpanded.Graphics.HediffCompProperties_Mote">
+				<compClass>VanillaPsycastsExpanded.Graphics.HediffComp_MoteOverHead</compClass>
+				<mote>VPEP_PsycastCastPurple</mote>
+			</li>
+		</comps>
+	</HediffDef>
+
 </Defs>
