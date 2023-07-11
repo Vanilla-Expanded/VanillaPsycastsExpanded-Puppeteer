@@ -297,6 +297,7 @@
 			<canTargetMechs>false</canTargetMechs>
 		</targetingParameters>
 		<targetMode>Pawn</targetMode>
+		<needsTicking>true</needsTicking>
 		<modExtensions>
 			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
 				<path>VPEP_Puppeteer</path>

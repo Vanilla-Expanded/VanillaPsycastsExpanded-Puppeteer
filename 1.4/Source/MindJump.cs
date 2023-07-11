@@ -14,21 +14,36 @@ namespace VPEPuppeteer
     new(this.destination.x - this.origin.x, this.def.Altitude, this.destination.z - this.origin.z +
                                                                this.ArcHeightFactor * (4 - 8 * this.DistanceCoveredFraction));
 
-        private new float ArcHeightFactor
-        {
-            get
-            {
-                float num = this.def.projectile.arcHeightFactor;
-                float num2 = (this.destination - this.origin).MagnitudeHorizontalSquared();
-                if (num * num > num2 * 0.2f * 0.2f) num = Mathf.Sqrt(num2) * 0.2f;
-
-                return num;
-            }
-        }
-
         public override Quaternion ExactRotation => Quaternion.LookRotation(this.LookTowards);
 
         public override int DamageAmount => 0;
+
+        public override void Draw()
+        {
+            float num = ArcHeightFactor * GenMath.InverseParabola(DistanceCoveredFraction);
+            Vector3 drawPos = DrawPos;
+            Vector3 position = drawPos + new Vector3(0f, 0f, 1f) * num;
+            Graphics.DrawMesh(MeshPool.GridPlane(DrawSize), position, ExactRotation, DrawMat, 0);
+            Comps_PostDraw();
+        }
+
+        public override Vector2 DrawSize
+        {
+            get
+            {
+                var drawSize = base.DrawSize;
+                if (DistanceCoveredFraction > 0.5f)
+                {
+                    drawSize *= 1f - (DistanceCoveredFraction);
+                }
+                else
+                {
+                    drawSize *= DistanceCoveredFraction;
+                }
+                drawSize *= 2f;
+                return drawSize;
+            }
+        }
 
         public override void Impact(Thing hitThing, bool blockedByShield = false)
         {
@@ -53,17 +68,12 @@ namespace VPEPuppeteer
                     pawn.health.RemoveHediff(pawnPsycasts);
                 }
 
-                Log.Message("1: " + sourcePsycasts.GetHashCode() + " - " + string.Join(", ", sourcePsycasts.unlockedPaths));
                 source.health.RemoveHediff(sourcePsylink);
                 source.health.RemoveHediff(sourcePsycasts);
-                Log.Message("2: " + sourcePsycasts.GetHashCode() + " - " + string.Join(", ", sourcePsycasts.unlockedPaths));
                 sourcePsylink.pawn = pawn;
                 sourcePsycasts.pawn = pawn;
                 pawn.health.hediffSet.hediffs.Add(sourcePsylink);
                 pawn.health.hediffSet.hediffs.Add(sourcePsycasts);
-                Log.Message("3: " + sourcePsycasts.GetHashCode() + " - " + string.Join(", ", sourcePsycasts.unlockedPaths));
-                pawnPsycasts = pawn.Psycasts();
-                Log.Message("4: " + pawnPsycasts.GetHashCode() + " - " + string.Join(", ", pawnPsycasts.unlockedPaths));
 
                 pawn.psychicEntropy.currentEntropy = source.psychicEntropy.currentEntropy;
                 pawn.psychicEntropy.currentPsyfocus = source.psychicEntropy.currentPsyfocus;
@@ -96,7 +106,25 @@ namespace VPEPuppeteer
                         pawnCompAbilities.GiveAbility(ability.def);
                     }
                 }
+
+                var mindJump = pawnCompAbilities.LearnedAbilities.OfType<Ability_MindJump>().FirstOrDefault();
+                Rot4 rotation = ((pawn.GetPosture() != 0) ? pawn.Drawer.renderer.LayingFacing() : Rot4.North);
+                var offset = pawn.Drawer.renderer.BaseHeadOffsetAt(rotation).RotatedBy(pawn.Drawer.renderer.BodyAngle());
+                mindJump.AddEffecterToMaintain(SpawnEffecter(VPEP_DefOf.VPEP_PsycastSkipFlashPurple, pawn, pawn.Map, offset, 0.3f), pawn.Position, 60);
+                FleckMaker.Static(source.Position, pawn.Map, FleckDefOf.PsycastAreaEffect, 1.5f);
+                FleckMaker.Static(pawn.Position, pawn.Map, FleckDefOf.PsycastAreaEffect, 1.5f);
+
             }
+        }
+
+        public Effecter SpawnEffecter(EffecterDef effecterDef, Thing target, Map map, Vector3 offset, float scale)
+        {
+            Effecter effecter = new Effecter(effecterDef);
+            effecter.offset = offset;
+            effecter.scale = scale;
+            TargetInfo targetInfo = new TargetInfo(target.Position, map);
+            effecter.Trigger(targetInfo, targetInfo);
+            return effecter;
         }
     }
 }

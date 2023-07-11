@@ -34,14 +34,15 @@
 			<texPath>Effects/Puppeteer/MindjumpGhost</texPath>
 			<ticksPerFrame>5</ticksPerFrame>
 			<graphicClass>VanillaPsycastsExpanded.Graphics.Graphic_Animated</graphicClass>
-			<drawSize>1.5</drawSize>
+			<drawSize>(4, 8)</drawSize>
+			<shaderType>MoteGlow</shaderType>
 		</graphicData>
 		<drawOffscreen>true</drawOffscreen>
 		<drawerType>RealtimeOnly</drawerType>
 		<projectile>
 			<damageDef>Cut</damageDef>
 			<damageAmountBase>1</damageAmountBase>
-			<speed>20</speed>
+			<speed>10</speed>
 			<arcHeightFactor>50</arcHeightFactor>
 			<shadowSize>0.6</shadowSize>
 		</projectile>
