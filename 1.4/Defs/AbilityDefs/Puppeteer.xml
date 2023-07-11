@@ -290,7 +290,7 @@
 		<iconPath>Abilities/Puppeteer/MindJump</iconPath>
 		<abilityClass>VPEPuppeteer.Ability_MindJump</abilityClass>
 		<castTime>1200</castTime>
-		<range>5</range>
+		<range>55</range>
 		<targetingParameters>
 			<canTargetPawns>true</canTargetPawns>
 			<canTargetBuildings>false</canTargetBuildings>
