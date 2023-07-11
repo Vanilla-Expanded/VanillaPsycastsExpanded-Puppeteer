@@ -4,38 +4,11 @@ using RimWorld;
 using RimWorld.Planet;
 using Verse;
 using VFECore.Abilities;
-using Ability = VFECore.Abilities.Ability;
 
 namespace VPEPuppeteer
 {
-    public class Ability_SummonPuppet : Ability
+    public class Ability_SummonPuppet : Ability_PuppetCastBase
     {
-        public override bool IsEnabledForPawn(out string reason)
-        {
-            if (!pawn.IsPuppeteer(out var hediff) || hediff.puppets.Count == 0)
-            {
-                reason = "VPEP.NoPuppets".Translate();
-                return false;
-            }
-            return base.IsEnabledForPawn(out reason);
-        }
-        public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
-        {
-            var targetPawn = target.Pawn;
-            if (targetPawn != null && (targetPawn.IsPuppet(out var puppetHediff) is false || puppetHediff.master != this.pawn))
-            {
-                if (showMessages)
-                {
-                    if (showMessages)
-                    {
-                        Messages.Message("VPEP.TargetMustBePuppetOfCaster".Translate(), MessageTypeDefOf.CautionInput);
-                    }
-                }
-                return false;
-            }
-            return base.ValidateTarget(target, showMessages);
-        }
-
         public override void Cast(params GlobalTargetInfo[] targets)
         {
             base.Cast(targets);

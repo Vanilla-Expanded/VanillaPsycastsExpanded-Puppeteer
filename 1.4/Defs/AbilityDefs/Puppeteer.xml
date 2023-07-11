@@ -191,6 +191,7 @@
 			<canTargetMechs>False</canTargetMechs>
 		</targetingParameters>
 		<castTime>15</castTime>
+		<needsTicking>True</needsTicking>
 		<modExtensions>
 			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
 				<path>VPEP_Puppeteer</path>
@@ -235,6 +236,7 @@
 		<abilityClass>VPEPuppeteer.Ability_PuppetSwarm</abilityClass>
 		<targetMode>Self</targetMode>
 		<castTime>300</castTime>
+		<needsTicking>True</needsTicking>
 		<modExtensions>
 			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
 				<path>VPEP_Puppeteer</path>
@@ -245,6 +247,69 @@
 				<prerequisites>
 					<li>VPEP_SummonPuppet</li>
 				</prerequisites>
+			</li>
+		</modExtensions>
+	</VFECore.Abilities.AbilityDef>
+
+	<VFECore.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_Ascension</defName>
+		<label>ascension</label>
+		<description>Targets a controlled puppet and causes them to commit suicide through psychic overload, annihilating itself and the surrounding 5 tiles. The sum of the puppet’s learned skills is converted into psychic energy for the detonation, with a fraction absorbed by the caster as psycasting XP.</description>
+		<iconPath>Abilities/Puppeteer/Ascension</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_Ascension</abilityClass>
+		<targetMode>Pawn</targetMode>
+		<range>19</range>
+		<needsTicking>True</needsTicking>
+		<targetingParameters>
+			<canTargetBuildings>False</canTargetBuildings>
+			<canTargetSelf>False</canTargetSelf>
+			<canTargetAnimals>False</canTargetAnimals>
+			<canTargetPawns>True</canTargetPawns>
+			<canTargetHumans>True</canTargetHumans>
+			<canTargetMechs>False</canTargetMechs>
+		</targetingParameters>
+		<castTime>240</castTime>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>5</level>
+				<order>2</order>
+				<psyfocusCost>0.16</psyfocusCost>
+				<entropyGain>60</entropyGain>
+				<prerequisites>
+					<li>VPEP_Puppet</li>
+				</prerequisites>
+			</li>
+		</modExtensions>
+	</VFECore.Abilities.AbilityDef>
+
+	<VFECore.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_MindJump</defName>
+		<label>mind jump</label>
+		<description>Permanently swaps the caster and the targeted puppet’s bodies, with the puppet becoming the master with all of their psycasting capabilities. The sudden change in consciousness and adaptation to a new vessel locks the new master into a scaled 48-hour psychic coma.</description>
+		<iconPath>Abilities/Puppeteer/MindJump</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_MindJump</abilityClass>
+		<castTime>1200</castTime>
+		<range>5</range>
+		<targetingParameters>
+			<canTargetPawns>true</canTargetPawns>
+			<canTargetBuildings>false</canTargetBuildings>
+			<canTargetMechs>false</canTargetMechs>
+		</targetingParameters>
+		<targetMode>Pawn</targetMode>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>5</level>
+				<order>3</order>
+				<psyfocusCost>0.50</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>VPEP_MindSplit</li>
+				</prerequisites>
+			</li>
+			<li Class="VFECore.Abilities.AbilityExtension_Projectile">
+				<projectile>VPEP_MindJump</projectile>
 			</li>
 		</modExtensions>
 	</VFECore.Abilities.AbilityDef>

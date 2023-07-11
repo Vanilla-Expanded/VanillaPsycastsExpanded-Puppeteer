@@ -19,16 +19,19 @@ namespace VPEPuppeteer
         public override void PostRemoved()
         {
             base.PostRemoved();
-            SpawnMoteAttached(VPEP_DefOf.VPEP_PsycastAreaEffect, 9999);
-            foreach (var puppet in puppets)
+            if (!preventRemoveEffects)
             {
-                var hediff = puppet.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Puppet);
-                if (hediff != null)
+                pawn.SpawnMoteAttached(VPEP_DefOf.VPEP_PsycastAreaEffect, 9999);
+                foreach (var puppet in puppets)
                 {
-                    puppet.health.RemoveHediff(hediff);
+                    var hediff = puppet.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Puppet);
+                    if (hediff != null)
+                    {
+                        puppet.health.RemoveHediff(hediff);
+                    }
                 }
+                puppets.Clear();
             }
-            puppets.Clear();
         }
 
         public override IEnumerable<Gizmo> GetGizmos()

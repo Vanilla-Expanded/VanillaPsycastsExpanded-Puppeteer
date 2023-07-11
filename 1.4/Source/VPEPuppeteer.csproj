@@ -71,14 +71,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbilityExtension_TargetValidator.cs" />
+    <Compile Include="Ability_Ascension.cs" />
     <Compile Include="Ability_BrainCut.cs" />
     <Compile Include="Ability_BrainLeech.cs" />
+    <Compile Include="Ability_MindJump.cs" />
     <Compile Include="Ability_MindSplit.cs" />
     <Compile Include="Ability_Puppet.cs" />
+    <Compile Include="Ability_PuppetCastBase.cs" />
     <Compile Include="Ability_PuppetSwarm.cs" />
     <Compile Include="Ability_SummonPuppet.cs" />
     <Compile Include="Degrade.cs" />
     <Compile Include="CachedResult.cs" />
+    <Compile Include="HarmonyPatches\Hediff_Psylink_TryGiveAbilityOfLevel_Patch.cs" />
     <Compile Include="HarmonyPatches\InspectPaneFiller_DrawMood_Patch.cs" />
     <Compile Include="HarmonyPatches\MentalBreaker_BreakExtremeIsApproaching_Patch.cs" />
     <Compile Include="HarmonyPatches\MentalBreaker_BreakExtremeIsImminent_Patch.cs" />
@@ -95,10 +99,12 @@
     <Compile Include="HarmonyPatches\SkillRecord_LearnRateFactor_Patch.cs" />
     <Compile Include="HarmonyPatches\SkillRecord_Learn_Patch.cs" />
     <Compile Include="Hediff_BrainLeech.cs" />
+    <Compile Include="Hediff_PuppetBase.cs" />
     <Compile Include="Hediff_Puppeteer.cs" />
     <Compile Include="Hediff_Puppet.cs" />
     <Compile Include="Hediff_Subjugation.cs" />
     <Compile Include="JobDriver_StripGear.cs" />
+    <Compile Include="MindJump.cs" />
     <Compile Include="PuppetBandwidthGizmo.cs" />
     <Compile Include="VPEPuppeteerMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

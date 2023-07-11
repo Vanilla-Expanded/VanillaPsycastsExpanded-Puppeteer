@@ -1,4 +1,7 @@
-﻿using Verse;
+﻿using RimWorld;
+using UnityEngine;
+using VanillaPsycastsExpanded;
+using Verse;
 
 namespace VPEPuppeteer
 {
@@ -24,6 +27,15 @@ namespace VPEPuppeteer
         {
             hediff_Puppeteer = pawn.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Puppeteer) as Hediff_Puppeteer;
             return hediff_Puppeteer != null;
+        }
+
+        public static void SpawnMoteAttached(this Pawn pawn, ThingDef moteDef, float scale)
+        {
+            if (pawn.Spawned)
+            {
+                MoteAttachedScaled mote = MoteMaker.MakeAttachedOverlay(pawn, moteDef, Vector3.zero) as MoteAttachedScaled;
+                mote.maxScale = scale;
+            }
         }
     }
 }

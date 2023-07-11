@@ -26,4 +26,24 @@
 		</comps>
 	</ThingDef>
 
+	<ThingDef ParentName="BaseBullet">
+		<defName>VPEP_MindJump</defName>
+		<label>mind jump</label>
+		<thingClass>VPEPuppeteer.MindJump</thingClass>
+		<graphicData Class="VanillaPsycastsExpanded.Graphics.GraphicData_Animated">
+			<texPath>Effects/Puppeteer/MindjumpGhost</texPath>
+			<ticksPerFrame>5</ticksPerFrame>
+			<graphicClass>VanillaPsycastsExpanded.Graphics.Graphic_Animated</graphicClass>
+			<drawSize>1.5</drawSize>
+		</graphicData>
+		<drawOffscreen>true</drawOffscreen>
+		<drawerType>RealtimeOnly</drawerType>
+		<projectile>
+			<damageDef>Cut</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<speed>20</speed>
+			<arcHeightFactor>50</arcHeightFactor>
+			<shadowSize>0.6</shadowSize>
+		</projectile>
+	</ThingDef>
 </Defs>
