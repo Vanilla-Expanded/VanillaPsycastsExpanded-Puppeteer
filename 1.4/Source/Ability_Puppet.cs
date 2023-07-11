@@ -99,6 +99,7 @@ namespace VPEPuppeteer
             }
             target.Notify_DisabledWorkTypesChanged();
             var coma = HediffMaker.MakeHediff(VPE_DefOf.PsychicComa, pawn);
+            coma.TryGetComp<HediffComp_Disappears>().ticksToDisappear = GenDate.TicksPerDay;
             pawn.health.AddHediff(coma);
             PawnComponentsUtility.AddAndRemoveDynamicComponents(target);
         }

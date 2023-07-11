@@ -11,4 +11,6 @@
 	<VPEP.Puppets>Puppets</VPEP.Puppets>
 	<VPEP.PuppetsGizmoTip>A puppeteer can only sustain a puppet if there is enough psychic capacity to do so. Gain more psychic capacity to sustain more puppets by casting mind split, however bear in mind it will send the puppeteer and all their puppets into a 24 hour coma.\n\nPsychic capacity: {0}</VPEP.PuppetsGizmoTip>
 	<VPEP.PuppetsUsage>Current puppets:</VPEP.PuppetsUsage>
+	<VPEP.TargetMustBePuppetOfCaster>Target must be a puppet of the caster.</VPEP.TargetMustBePuppetOfCaster>
+	<VPEP.NoPuppets>No puppets.</VPEP.NoPuppets>
 </LanguagData>

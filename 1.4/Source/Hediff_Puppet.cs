@@ -5,7 +5,25 @@ using Verse;
 
 namespace VPEPuppeteer
 {
-    public class Hediff_Puppet : HediffWithComps
+    public class Hediff_PuppetBase : HediffWithComps
+    {
+        public void SpawnMoteAttached(ThingDef moteDef, float scale)
+        {
+            if (pawn.Spawned)
+            {
+                MoteAttachedScaled mote = MoteMaker.MakeAttachedOverlay(pawn, moteDef, Vector3.zero) as MoteAttachedScaled;
+                mote.maxScale = scale;
+            }
+        }
+
+        public override void Notify_PawnKilled()
+        {
+            base.Notify_PawnKilled();
+            pawn.health.RemoveHediff(this);
+        }
+    }
+
+    public class Hediff_Puppet : Hediff_PuppetBase
     {
         public Pawn master;
 
@@ -17,7 +35,8 @@ namespace VPEPuppeteer
         {
             base.PostRemoved();
             pawn.health.AddHediff(HediffDefOf.Abasia);
-            pawn.health.AddHediff(VPE_DefOf.PsychicComa);
+            var coma = pawn.health.AddHediff(VPE_DefOf.PsychicComa);
+            coma.TryGetComp<HediffComp_Disappears>().ticksToDisappear = GenDate.TicksPerDay;
             SpawnMoteAttached(VPEP_DefOf.VPEP_PsycastAreaEffect, 9999);
             if (master != null)
             {
@@ -27,19 +46,6 @@ namespace VPEPuppeteer
                     hediff.puppets.Remove(pawn);
                 }
             }
-        }
-
-        public Mote SpawnMoteAttached(ThingDef moteDef, float scale)
-        {
-            MoteAttachedScaled mote = MoteMaker.MakeAttachedOverlay(pawn, moteDef, Vector3.zero) as MoteAttachedScaled;
-            mote.maxScale = scale;
-            return mote;
-        }
-
-        public override void Notify_PawnKilled()
-        {
-            base.Notify_PawnKilled();
-            pawn.health.RemoveHediff(this);
         }
 
         public override void ExposeData()

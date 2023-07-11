@@ -43,14 +43,14 @@
 		<altitudeLayer>MoteLow</altitudeLayer>
 		<mote>
 			<fadeInTime>0.02</fadeInTime>
-			<fadeOutTime>0.6</fadeOutTime>
+			<fadeOutTime>5</fadeOutTime>
 			<growthRate>5</growthRate>
-			<solidTime>100</solidTime>
+			<solidTime>30</solidTime>
 		</mote>
 		<graphicData>
 			<texPath>Things/Mote/Black</texPath>
 			<shaderParameters>
-				<_distortionIntensity>0.05</_distortionIntensity>
+				<_distortionIntensity>1</_distortionIntensity>
 				<_brightnessMultiplier>1.15</_brightnessMultiplier>
 			</shaderParameters>
 			<drawSize>2.2</drawSize>

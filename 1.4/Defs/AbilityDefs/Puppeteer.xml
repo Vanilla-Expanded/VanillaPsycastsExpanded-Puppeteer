@@ -66,6 +66,7 @@
 			</li>
 			<li Class="VPEPuppeteer.AbilityExtension_TargetValidator">
 				<ofCasterFaction>True</ofCasterFaction>
+				<allowPrisoners>True</allowPrisoners>
 			</li>
 		</modExtensions>
 	</VFECore.Abilities.AbilityDef>
@@ -104,7 +105,7 @@
 				<hediff>VPEP_Subjugation</hediff>
 			</li>
 			<li Class="VPEPuppeteer.AbilityExtension_TargetValidator">
-				<prisonersOnly>True</prisonersOnly>
+				<allowPrisoners>True</allowPrisoners>
 			</li>
 		</modExtensions>
 	</VFECore.Abilities.AbilityDef>
@@ -173,4 +174,79 @@
 		</modExtensions>
 	</VFECore.Abilities.AbilityDef>
 
+	<VFECore.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_SummonPuppet</defName>
+		<label>summon puppet</label>
+		<description>By causing an effect similar to an extreme case of “homesickness”, the caster can force the puppet to skip itself to them almost instantaneously and regardless of distance.</description>
+		<iconPath>Abilities/Puppeteer/SummonPuppet</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_SummonPuppet</abilityClass>
+		<targetMode>Pawn</targetMode>
+		<range>99999</range>
+		<targetingParameters>
+			<canTargetBuildings>False</canTargetBuildings>
+			<canTargetSelf>False</canTargetSelf>
+			<canTargetAnimals>False</canTargetAnimals>
+			<canTargetPawns>True</canTargetPawns>
+			<canTargetHumans>True</canTargetHumans>
+			<canTargetMechs>False</canTargetMechs>
+		</targetingParameters>
+		<castTime>15</castTime>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>4</level>
+				<order>1</order>
+				<psyfocusCost>0.24</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>VPEP_Puppet</li>
+				</prerequisites>
+			</li>
+		</modExtensions>
+	</VFECore.Abilities.AbilityDef>
+
+	<VFECore.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_MindSplit</defName>
+		<label>mind split</label>
+		<description>By taking the psionic equivalent of a hammer and chisel to their own consciousness, the caster can permanently increase their limit of controllable puppets by one. Effectively painless as they knock themselves unconscious for 24 hours from shattering their sense of self.</description>
+		<iconPath>Abilities/Puppeteer/MindSplit</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_MindSplit</abilityClass>
+		<targetMode>Self</targetMode>
+		<castTime>600</castTime>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>4</level>
+				<order>2</order>
+				<psyfocusCost>0.8</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>VPEP_Puppet</li>
+				</prerequisites>
+			</li>
+		</modExtensions>
+	</VFECore.Abilities.AbilityDef>
+
+	<VFECore.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_PuppetSwarm</defName>
+		<label>puppet swarm</label>
+		<description>By causing an effect similar to an extreme case of “homesickness”, the caster can force all linked puppets to skip themselves to them almost instantaneously and regardless of distance. The effect targets the caster as well, resulting in a 12 hour coma due to confusion and whiplash.</description>
+		<iconPath>Abilities/Puppeteer/PuppetSwarm</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_PuppetSwarm</abilityClass>
+		<targetMode>Self</targetMode>
+		<castTime>300</castTime>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>5</level>
+				<order>1</order>
+				<psyfocusCost>0.3</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>VPEP_SummonPuppet</li>
+				</prerequisites>
+			</li>
+		</modExtensions>
+	</VFECore.Abilities.AbilityDef>
+	
 </Defs>

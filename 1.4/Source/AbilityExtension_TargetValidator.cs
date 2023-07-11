@@ -10,7 +10,7 @@ namespace VPEPuppeteer
     {
         public bool notOfCasterFaction;
         public bool ofCasterFaction;
-        public bool prisonersOnly;
+        public bool allowPrisoners;
         public HediffDef requiredHediffOnTarget;
         public override bool ValidateTarget(LocalTargetInfo target, Ability ability, bool throwMessages = false)
         {
@@ -24,17 +24,20 @@ namespace VPEPuppeteer
                     }
                     return false;
                 }
-                if (ofCasterFaction && target.Thing.Faction != ability.pawn.Faction)
+                if (ofCasterFaction)
                 {
-                    if (throwMessages)
+                    if (target.Thing.Faction != ability.pawn.Faction && (!allowPrisoners || target.Pawn.IsPrisonerOfColony is false && target.Pawn.IsSlaveOfColony is false))
                     {
-                        Messages.Message("VPEP.TargetMustBeSameFactionAsCaster".Translate(), MessageTypeDefOf.CautionInput);
+                        if (throwMessages)
+                        {
+                            Messages.Message("VPEP.TargetMustBeSameFactionAsCaster".Translate(), MessageTypeDefOf.CautionInput);
+                        }
+                        return false;
                     }
-                    return false;
                 }
                 if (target.Pawn != null)
                 {
-                    if (prisonersOnly && target.Pawn.IsPrisonerOfColony is false && target.Pawn.IsSlaveOfColony is false)
+                    if (allowPrisoners && target.Pawn.IsPrisonerOfColony is false && target.Pawn.IsSlaveOfColony is false)
                     {
                         if (throwMessages)
                         {
