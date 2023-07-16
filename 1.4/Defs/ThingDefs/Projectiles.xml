@@ -42,7 +42,7 @@
 		<projectile>
 			<damageDef>Cut</damageDef>
 			<damageAmountBase>1</damageAmountBase>
-			<speed>10</speed>
+			<speed>20</speed>
 			<arcHeightFactor>50</arcHeightFactor>
 			<shadowSize>0.6</shadowSize>
 		</projectile>
