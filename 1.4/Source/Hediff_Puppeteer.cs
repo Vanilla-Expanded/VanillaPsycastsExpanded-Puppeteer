@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Verse;
+using Verse.Sound;
 
 namespace VPEPuppeteer
 {
@@ -30,6 +31,7 @@ namespace VPEPuppeteer
                         puppet.health.RemoveHediff(hediff);
                     }
                 }
+                VPEP_DefOf.VPEP_Puppet_Master_Death.PlayOneShot(pawn);
                 puppets.Clear();
             }
         }

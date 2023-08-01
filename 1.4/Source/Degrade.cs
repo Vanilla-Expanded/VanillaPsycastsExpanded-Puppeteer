@@ -31,12 +31,15 @@ namespace VPEPuppeteer
         {
             if (hitThing is Pawn pawn)
             {
-                pawn.equipment.DropAllEquipment(pawn.Position);
-                VPEP_DefOf.RunWild.Worker.TryStart(pawn, "VPEP.DegradePsycast".Translate(), false);
-                var firstApparel = pawn.apparel.WornApparel.FirstOrDefault();
-                if (firstApparel != null)
+                if (pawn.needs?.mood != null)
                 {
-                    pawn.jobs.StartJob(JobMaker.MakeJob(VPEP_DefOf.VPEP_StripGear, firstApparel));
+                    pawn.equipment.DropAllEquipment(pawn.Position);
+                    VPEP_DefOf.RunWild.Worker.TryStart(pawn, "VPEP.DegradePsycast".Translate(), false);
+                    var firstApparel = pawn.apparel.WornApparel.FirstOrDefault();
+                    if (firstApparel != null)
+                    {
+                        pawn.jobs.StartJob(JobMaker.MakeJob(VPEP_DefOf.VPEP_StripGear, firstApparel));
+                    }
                 }
             }
             FleckMaker.Static(Position, Map, FleckDefOf.PsycastAreaEffect, 2);

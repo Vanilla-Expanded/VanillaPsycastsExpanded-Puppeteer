@@ -8,6 +8,7 @@
 		<iconPath>Abilities/Puppeteer/BrainCut</iconPath>
 		<abilityClass>VPEPuppeteer.Ability_BrainCut</abilityClass>
 		<targetMode>Pawn</targetMode>
+		<castSound>VPEP_Braincut_Cast</castSound>
 		<targetingParameters>
 			<canTargetBuildings>False</canTargetBuildings>
 			<canTargetSelf>False</canTargetSelf>
@@ -42,6 +43,7 @@
 		<description>Creates a psionic link on a colleague or prisoner that redirects brain processing power to the leacher. The effect is inefficient and reaches its maximum after 2 days before fading into obscurity. Only a single leech can be maintained.</description>
 		<iconPath>Abilities/Puppeteer/BrainLeech</iconPath>
 		<abilityClass>VPEPuppeteer.Ability_BrainLeech</abilityClass>
+		<castSound>VPEP_Brainleech_Cast</castSound>
 		<targetMode>Pawn</targetMode>
 		<distanceToTarget>1.5</distanceToTarget>
 		<needsTicking>true</needsTicking>
@@ -81,6 +83,7 @@
 		<distanceToTarget>1.5</distanceToTarget>
 		<drawAimPie>false</drawAimPie>
 		<durationTime>420000</durationTime>
+		<castSound>VPEP_Subjugation_Cast</castSound>
 		<targetingParameters>
 			<canTargetBuildings>False</canTargetBuildings>
 			<canTargetSelf>False</canTargetSelf>
@@ -118,6 +121,7 @@
 		<abilityClass>VFECore.Abilities.Ability_ShootProjectile</abilityClass>
 		<castTime>240</castTime>
 		<range>21.9</range>
+		<castSound>VPEP_Degrade_Cast</castSound>
 		<targetingParameters>
 			<canTargetPawns>true</canTargetPawns>
 			<canTargetBuildings>false</canTargetBuildings>
@@ -139,6 +143,7 @@
 			<li Class="VFECore.Abilities.AbilityExtension_Projectile">
 				<projectile>VPEP_Degrade</projectile>
 				<hitFlags>All</hitFlags>
+				<soundOnImpact>VPEP_Degrade_Hit</soundOnImpact>
 			</li>
 		</modExtensions>
 	</VFECore.Abilities.AbilityDef>
@@ -160,6 +165,7 @@
 			<canTargetMechs>False</canTargetMechs>
 		</targetingParameters>
 		<castTime>1200</castTime>
+		<castSound>VPEP_Puppet_Hit</castSound>
 		<modExtensions>
 			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
 				<path>VPEP_Puppeteer</path>
@@ -214,6 +220,7 @@
 		<abilityClass>VPEPuppeteer.Ability_MindSplit</abilityClass>
 		<targetMode>Self</targetMode>
 		<castTime>600</castTime>
+		<castSound>VPEP_MindSplit_Hit</castSound>
 		<modExtensions>
 			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
 				<path>VPEP_Puppeteer</path>
@@ -260,6 +267,7 @@
 		<targetMode>Pawn</targetMode>
 		<range>19</range>
 		<needsTicking>True</needsTicking>
+		<castSound>VPEP_Ascension_Cast</castSound>
 		<targetingParameters>
 			<canTargetBuildings>False</canTargetBuildings>
 			<canTargetSelf>False</canTargetSelf>
@@ -311,6 +319,7 @@
 			</li>
 			<li Class="VFECore.Abilities.AbilityExtension_Projectile">
 				<projectile>VPEP_MindJump</projectile>
+				<soundOnImpact>VPEP_MindJump_Hit</soundOnImpact>
 			</li>
 		</modExtensions>
 	</VFECore.Abilities.AbilityDef>

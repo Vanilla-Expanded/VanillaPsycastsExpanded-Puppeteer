@@ -16,5 +16,6 @@ namespace VPEPuppeteer
         public static HediffDef VPEP_Puppeteer;
         public static HediffDef VPEP_Puppet;
         public static ThingDef VPEP_PsycastAreaEffect;
+        public static SoundDef VPEP_Puppet_Master_Death;
     }
 }
