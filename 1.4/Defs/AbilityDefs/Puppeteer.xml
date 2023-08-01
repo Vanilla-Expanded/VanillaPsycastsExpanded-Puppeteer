@@ -145,6 +145,7 @@
 				<hitFlags>All</hitFlags>
 				<soundOnImpact>VPEP_Degrade_Hit</soundOnImpact>
 			</li>
+			<li Class="VPEPuppeteer.AbilityExtension_TargetValidator"></li>
 		</modExtensions>
 	</VFECore.Abilities.AbilityDef>
 
