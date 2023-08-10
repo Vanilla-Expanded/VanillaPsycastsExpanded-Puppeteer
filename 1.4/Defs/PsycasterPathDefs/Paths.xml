@@ -4,11 +4,11 @@
   <VanillaPsycastsExpanded.PsycasterPathDef>
     <defName>VPEP_Puppeteer</defName>
     <label>puppeteer</label>
-    <description>The most sacred of the tribal professions, animats are in direct psychic contact with the anima trees. They can connect to the tree and use it to their advantage, be it through creating powerful anima screams that resonate like an echo from every tree and obelisk in range, or by imprinting the anima tree with the psycasting knowledge, essentially teaching the tree how to be a psycaster itself.</description>
+    <description>Puppeteers provide the ways to exploit minds and dominate others. They are the masters of subjugating enemies and creating mindless husks upon which they feed.</description>
     <background>UI/Backgrounds/PuppeteerPath</background>
     <altBackground>UI/AlternativeBackgrounds/PathBG_Puppeteer</altBackground>
     <tab>Psycasts</tab>
-    <tooltip>The most sacred of the tribal professions, animats are in direct psychic contact with the anima trees. They can connect to the tree and use it to their advantage, be it through creating powerful anima screams that resonate like an echo from every tree and obelisk in range, or by imprinting the anima tree with the psycasting knowledge, essentially teaching the tree how to be a psycaster itself.</tooltip>
+    <tooltip>Masters of psychic manipulation, puppeteers can delve into minds, inflicting deep psychic wounds or taking control. They craft mindless puppets, extensions of their own will, which collect knowledge and serve their whims. In times of danger, a puppeteer can transfer their very essence into a puppet, achieving a form of immortality. This arcane art is jealously guarded, known only to the elite empire-born nobles.</tooltip>
     <lockedReason>Imperials only</lockedReason>
     <requiredBackstoriesAny>
       <li>
