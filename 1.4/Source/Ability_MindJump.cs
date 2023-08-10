@@ -37,7 +37,6 @@ namespace VPEPuppeteer
         protected override Projectile ShootProjectile(GlobalTargetInfo target)
         {
             var projectile = base.ShootProjectile(target) as MindJump;
-
             return projectile;
         }
     }

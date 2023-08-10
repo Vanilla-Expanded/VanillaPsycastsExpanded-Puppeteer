@@ -11,16 +11,25 @@ namespace VPEPuppeteer
 
         public override string Label => base.Label + ": " + master.LabelShort;
 
-        public override bool ShouldRemove => master is null || master.Dead || pawn.Dead;
+        public override bool ShouldRemove => master is null || master.Dead || pawn.Dead || pawn.Destroyed;
+
+        public override void Notify_PawnKilled()
+        {
+            base.Notify_PawnKilled();
+            pawn.health.RemoveHediff(this);
+        }
 
         public override void PostRemoved()
         {
             base.PostRemoved();
             if (!preventRemoveEffects)
             {
-                pawn.health.AddHediff(HediffDefOf.Abasia);
-                var coma = pawn.health.AddHediff(VPE_DefOf.PsychicComa);
-                coma.TryGetComp<HediffComp_Disappears>().ticksToDisappear = GenDate.TicksPerDay;
+                if (!pawn.Dead)
+                {
+                    pawn.health.AddHediff(HediffDefOf.Abasia);
+                    var coma = pawn.health.AddHediff(VPE_DefOf.PsychicComa);
+                    coma.TryGetComp<HediffComp_Disappears>().ticksToDisappear = GenDate.TicksPerDay;
+                }
                 pawn.SpawnMoteAttached(VPEP_DefOf.VPEP_PsycastAreaEffect, 9999);
                 if (master != null)
                 {

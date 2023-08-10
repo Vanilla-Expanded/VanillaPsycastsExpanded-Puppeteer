@@ -93,10 +93,17 @@ namespace VPEPuppeteer
             masterHediff.puppets.Add(target);
             target.health.AddHediff(puppetHediff);
 
-            if (target.IsPrisonerOfColony || target.IsSlaveOfColony)
+            if (target.Faction != pawn.Faction && pawn.Faction != null)
             {
-                target.SetFaction(Faction.OfPlayer);
+                target.SetFaction(pawn.Faction, pawn);
             }
+
+            if (target.ideo.ideo != null && pawn.Ideo != target.ideo.ideo)
+            {
+                target.ideo.SetIdeo(pawn.Ideo);
+                target.ideo.Certainty = 0.5f;
+            }
+
             target.Notify_DisabledWorkTypesChanged();
             var coma = HediffMaker.MakeHediff(VPE_DefOf.PsychicComa, pawn);
             coma.TryGetComp<HediffComp_Disappears>().ticksToDisappear = GenDate.TicksPerDay;

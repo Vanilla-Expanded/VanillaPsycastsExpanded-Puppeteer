@@ -48,55 +48,76 @@ namespace VPEPuppeteer
         public override void Impact(Thing hitThing, bool blockedByShield = false)
         {
             base.Impact(hitThing, blockedByShield);
-            if (hitThing is Pawn pawn && pawn.IsPuppet(out var hediff) && hediff.master == this.launcher)
+            if (hitThing is Pawn puppetToMaster && puppetToMaster.IsPuppet(out var hediff) && hediff.master == this.launcher)
             {
-                var coma = HediffMaker.MakeHediff(VPE_DefOf.PsychicComa, pawn);
-                coma.TryGetComp<HediffComp_Disappears>().ticksToDisappear = (int)((GenDate.TicksPerDay * 2) / pawn.GetStatValue(StatDefOf.PsychicSensitivity));
-                pawn.health.AddHediff(coma);
+                var coma = HediffMaker.MakeHediff(VPE_DefOf.PsychicComa, puppetToMaster);
+                coma.TryGetComp<HediffComp_Disappears>().ticksToDisappear = (int)((GenDate.TicksPerDay * 2) / puppetToMaster.GetStatValue(StatDefOf.PsychicSensitivity));
+                puppetToMaster.health.AddHediff(coma);
 
-                var source = this.launcher as Pawn;
-                var sourcePsylink = source.GetMainPsylinkSource();
-                var sourcePsycasts = source.Psycasts();
-                var pawnPsylink = pawn.GetMainPsylinkSource();
-                var pawnPsycasts = pawn.Psycasts();
+                var masterToPuppet = this.launcher as Pawn;
+                var sourcePsylink = masterToPuppet.GetMainPsylinkSource();
+                var sourcePsycasts = masterToPuppet.Psycasts();
+                var pawnPsylink = puppetToMaster.GetMainPsylinkSource();
+                var pawnPsycasts = puppetToMaster.Psycasts();
                 if (pawnPsylink != null)
                 {
-                    pawn.health.RemoveHediff(pawnPsylink);
+                    puppetToMaster.health.RemoveHediff(pawnPsylink);
                 }
                 if (pawnPsycasts != null)
                 {
-                    pawn.health.RemoveHediff(pawnPsycasts);
+                    puppetToMaster.health.RemoveHediff(pawnPsycasts);
                 }
 
-                source.health.RemoveHediff(sourcePsylink);
-                source.health.RemoveHediff(sourcePsycasts);
-                sourcePsylink.pawn = pawn;
-                sourcePsycasts.pawn = pawn;
-                pawn.health.hediffSet.hediffs.Add(sourcePsylink);
-                pawn.health.hediffSet.hediffs.Add(sourcePsycasts);
+                masterToPuppet.health.RemoveHediff(sourcePsylink);
+                masterToPuppet.health.RemoveHediff(sourcePsycasts);
+                sourcePsylink.pawn = puppetToMaster;
+                sourcePsycasts.pawn = puppetToMaster;
+                puppetToMaster.health.hediffSet.hediffs.Add(sourcePsylink);
+                puppetToMaster.health.hediffSet.hediffs.Add(sourcePsycasts);
 
-                pawn.psychicEntropy.currentEntropy = source.psychicEntropy.currentEntropy;
-                pawn.psychicEntropy.currentPsyfocus = source.psychicEntropy.currentPsyfocus;
-                pawn.psychicEntropy.limitEntropyAmount = source.psychicEntropy.limitEntropyAmount;
-                pawn.psychicEntropy.targetPsyfocus = source.psychicEntropy.targetPsyfocus;
-                source.psychicEntropy = new Pawn_PsychicEntropyTracker(source);
+                puppetToMaster.psychicEntropy.currentEntropy = masterToPuppet.psychicEntropy.currentEntropy;
+                puppetToMaster.psychicEntropy.currentPsyfocus = masterToPuppet.psychicEntropy.currentPsyfocus;
+                puppetToMaster.psychicEntropy.limitEntropyAmount = masterToPuppet.psychicEntropy.limitEntropyAmount;
+                puppetToMaster.psychicEntropy.targetPsyfocus = masterToPuppet.psychicEntropy.targetPsyfocus;
+                masterToPuppet.psychicEntropy = new Pawn_PsychicEntropyTracker(masterToPuppet);
 
-                var puppeteer = source.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Puppeteer) as Hediff_Puppeteer;
-                var puppet = pawn.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Puppet) as Hediff_Puppet;
+                var puppeteer = masterToPuppet.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Puppeteer) as Hediff_Puppeteer;
+                var puppet = puppetToMaster.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Puppet) as Hediff_Puppet;
 
                 Hediff_PuppetBase.preventRemoveEffects = true;
-                source.health.RemoveHediff(puppeteer);
-                pawn.health.RemoveHediff(puppet);
+                masterToPuppet.health.RemoveHediff(puppeteer);
+                puppetToMaster.health.RemoveHediff(puppet);
                 Hediff_PuppetBase.preventRemoveEffects = false;
 
-                puppet.master = pawn;
-                puppet.pawn = source;
-                puppeteer.pawn = pawn;
-                source.health.AddHediff(puppet);
-                pawn.health.AddHediff(puppeteer);
 
-                var sourceCompAbilities = source.GetComp<CompAbilities>();
-                var pawnCompAbilities = pawn.GetComp<CompAbilities>();
+                puppet.master = puppetToMaster;
+                puppet.pawn = masterToPuppet;
+                puppeteer.pawn = puppetToMaster;
+                masterToPuppet.health.AddHediff(puppet);
+                puppetToMaster.health.AddHediff(puppeteer);
+
+                var leeching = masterToPuppet.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Leeching) as Hediff_BrainLeech;
+                if (leeching != null)
+                {
+                    Hediff_BrainLeech.preventRemoveEffects = true;
+                    masterToPuppet.health.RemoveHediff(leeching);
+                    Hediff_BrainLeech.preventRemoveEffects = false;
+                    puppetToMaster.health.AddHediff(leeching);
+                    var brainLeech = leeching.otherPawn.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_BrainLeech) as Hediff_BrainLeech;
+                    brainLeech.otherPawn = puppetToMaster;
+                }
+
+                puppeteer.puppets.Remove(puppetToMaster);
+                puppeteer.puppets.Add(masterToPuppet);
+
+                foreach (var otherPuppet in puppeteer.puppets)
+                {
+                    var puppetHediff = otherPuppet.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Puppet) as Hediff_Puppet;
+                    puppetHediff.master = puppetToMaster;
+                }
+
+                var sourceCompAbilities = masterToPuppet.GetComp<CompAbilities>();
+                var pawnCompAbilities = puppetToMaster.GetComp<CompAbilities>();
 
                 foreach (var ability in sourceCompAbilities.LearnedAbilities.ToList())
                 {
@@ -106,13 +127,12 @@ namespace VPEPuppeteer
                         pawnCompAbilities.GiveAbility(ability.def);
                     }
                 }
-
                 var mindJump = pawnCompAbilities.LearnedAbilities.OfType<Ability_MindJump>().FirstOrDefault();
-                Rot4 rotation = ((pawn.GetPosture() != 0) ? pawn.Drawer.renderer.LayingFacing() : Rot4.North);
-                var offset = pawn.Drawer.renderer.BaseHeadOffsetAt(rotation).RotatedBy(pawn.Drawer.renderer.BodyAngle());
-                mindJump.AddEffecterToMaintain(SpawnEffecter(VPEP_DefOf.VPEP_PsycastSkipFlashPurple, pawn, pawn.Map, offset, 0.3f), pawn.Position, 60);
-                FleckMaker.Static(source.Position, pawn.Map, FleckDefOf.PsycastAreaEffect, 1.5f);
-                FleckMaker.Static(pawn.Position, pawn.Map, FleckDefOf.PsycastAreaEffect, 1.5f);
+                Rot4 rotation = ((puppetToMaster.GetPosture() != 0) ? puppetToMaster.Drawer.renderer.LayingFacing() : Rot4.North);
+                var offset = puppetToMaster.Drawer.renderer.BaseHeadOffsetAt(rotation).RotatedBy(puppetToMaster.Drawer.renderer.BodyAngle());
+                mindJump.AddEffecterToMaintain(SpawnEffecter(VPEP_DefOf.VPEP_PsycastSkipFlashPurple, puppetToMaster, puppetToMaster.Map, offset, 0.3f), puppetToMaster.Position, 60);
+                FleckMaker.Static(masterToPuppet.Position, puppetToMaster.Map, FleckDefOf.PsycastAreaEffect, 1.5f);
+                FleckMaker.Static(puppetToMaster.Position, puppetToMaster.Map, FleckDefOf.PsycastAreaEffect, 1.5f);
 
             }
         }

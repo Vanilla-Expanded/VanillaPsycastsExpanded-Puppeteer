@@ -13,7 +13,8 @@ namespace VPEPuppeteer
         public int nextFleckSpawnTick;
         public bool leecher;
         private static readonly Vector3 BreathOffset = new Vector3(0f, 0f, -0.04f);
-        public override bool ShouldRemove => otherPawn is null || otherPawn.Downed || otherPawn.Dead || shouldRemove;
+        public override bool ShouldRemove => otherPawn is null || otherPawn.Dead || shouldRemove;
+        public static bool preventRemoveEffects;
 
         public override string Label => base.Label + ": " + otherPawn.LabelShort;
         public override void PostAdd(DamageInfo? dinfo)
@@ -25,12 +26,15 @@ namespace VPEPuppeteer
         public override void PostRemoved()
         {
             base.PostRemoved();
-            if (otherPawn != null)
+            if (!preventRemoveEffects)
             {
-                var hediff = otherPawn.health.hediffSet.GetFirstHediff<Hediff_BrainLeech>();
-                if (hediff != null)
+                if (otherPawn != null)
                 {
-                    otherPawn.health.RemoveHediff(hediff);
+                    var hediff = otherPawn.health.hediffSet.GetFirstHediff<Hediff_BrainLeech>();
+                    if (hediff != null)
+                    {
+                        otherPawn.health.RemoveHediff(hediff);
+                    }
                 }
             }
         }

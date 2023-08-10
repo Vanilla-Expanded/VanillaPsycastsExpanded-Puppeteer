@@ -8,7 +8,7 @@ namespace VPEPuppeteer
         public override void PostRemoved()
         {
             base.PostRemoved();
-            if (this.Severity >= 0.99f) 
+            if (this.Severity >= 0.95f)
             {
                 if (pawn.guest != null && pawn.Faction != Faction.OfPlayer)
                 {
