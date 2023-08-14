@@ -39,6 +39,7 @@ namespace VPEPuppeteer
                         hediff.puppets.Remove(pawn);
                     }
                 }
+                pawn.needs.AddOrRemoveNeedsAsAppropriate();
             }
         }
 
