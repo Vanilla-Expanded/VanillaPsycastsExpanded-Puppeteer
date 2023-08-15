@@ -4,7 +4,7 @@
 	<HediffDef>
 		<defName>VPEP_BrainLeech</defName>
 		<label>Brain leech</label>
-		<description>text.todo.</description>
+		<description>A brain parasite that leeches consciousness of the victim and gives a fraction of that consciousness to the psycaster that cast it.</description>
 		<hediffClass>VPEPuppeteer.Hediff_BrainLeech</hediffClass>
 		<initialSeverity>0</initialSeverity>
 		<stages>
@@ -59,7 +59,7 @@
 	<HediffDef>
 		<defName>VPEP_Leeching</defName>
 		<label>Leeching</label>
-		<description>text.todo.</description>
+		<description>A psychic consciousness boost provided by the brain leech on another person.</description>
 		<hediffClass>VPEPuppeteer.Hediff_BrainLeech</hediffClass>
 		<initialSeverity>0</initialSeverity>
 		<stages>
@@ -114,7 +114,7 @@
 	<HediffDef ParentName="PsycastHediffBase">
 		<defName>VPEP_Subjugation</defName>
 		<label>subjugation</label>
-		<description>text.todo.</description>
+		<description>A psychic indoctrination that reduces consciousness, manipulation and breathing of the subject until they reach a breaking point and join your colony.</description>
 		<hediffClass>VPEPuppeteer.Hediff_Subjugation</hediffClass>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
@@ -184,7 +184,7 @@
 	<HediffDef>
 		<defName>VPEP_Puppeteer</defName>
 		<label>Puppeteer</label>
-		<description>text.todo.</description>
+		<description>This individual is a puppeteer and uses psychic influence to control puppets. Puppets share their experience gain with the puppeteer. If the puppeteer dies, a psychic shockwave will knock all puppets into paralytic abasia.</description>
 		<hediffClass>VPEPuppeteer.Hediff_Puppeteer</hediffClass>
 		<isBad>False</isBad>
 	</HediffDef>
@@ -192,7 +192,7 @@
 	<HediffDef>
 		<defName>VPEP_Puppet</defName>
 		<label>Puppet</label>
-		<description>text.todo.</description>
+		<description>This individual is a puppet. They inherit their backstories and traits from their puppetmaster, however they have no needs other than food and rest. They have lowered consiousness and have their experience gain greatly reduced. They will enter the same mental state as their puppeteer.</description>
 		<hediffClass>VPEPuppeteer.Hediff_Puppet</hediffClass>
 		<isBad>False</isBad>
 		<stages>
