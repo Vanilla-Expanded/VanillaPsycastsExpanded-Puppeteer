@@ -13,7 +13,7 @@ namespace VPEPuppeteer
         public int nextFleckSpawnTick;
         public bool leecher;
         private static readonly Vector3 BreathOffset = new Vector3(0f, 0f, -0.04f);
-        public override bool ShouldRemove => otherPawn is null || otherPawn.Dead || shouldRemove;
+        public override bool ShouldRemove => otherPawn.IsAliveOrTransferingMind() is false || shouldRemove;
         public static bool preventRemoveEffects;
 
         public override string Label => base.Label + ": " + otherPawn.LabelShort;

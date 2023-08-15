@@ -35,8 +35,6 @@ namespace VPEPuppeteer
                 }
                 GenPlace.TryPlaceThing(puppet, pawn.Position, pawn.Map, ThingPlaceMode.Near);
             }
-            var coma = pawn.health.AddHediff(VPE_DefOf.PsychicComa);
-            coma.TryGetComp<HediffComp_Disappears>().ticksToDisappear = GenDate.TicksPerDay / 2;
         }
     }
 }

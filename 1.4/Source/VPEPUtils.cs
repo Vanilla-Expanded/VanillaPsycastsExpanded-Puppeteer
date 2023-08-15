@@ -2,6 +2,7 @@
 using UnityEngine;
 using VanillaPsycastsExpanded;
 using Verse;
+using VFECore.Abilities;
 
 namespace VPEPuppeteer
 {
@@ -27,6 +28,23 @@ namespace VPEPuppeteer
         {
             hediff_Puppeteer = pawn.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Puppeteer) as Hediff_Puppeteer;
             return hediff_Puppeteer != null;
+        }
+
+        public static bool IsAliveOrTransferingMind(this Pawn pawn)
+        {
+            if (pawn is null)
+            {
+                return false;
+            }
+            var mindJump = pawn.GetComp<CompAbilities>().LearnedAbilities.FirstOrDefault(x => x.def == VPEP_DefOf.VPEP_MindJump) as Ability_MindJump;
+            if (mindJump != null)
+            {
+                if (mindJump.firedMindJump.DestroyedOrNull() is false)
+                {
+                    return true;
+                }
+            }
+            return pawn.Dead is false && pawn.Destroyed is false;
         }
 
         public static void SpawnMoteAttached(this Pawn pawn, ThingDef moteDef, float scale)

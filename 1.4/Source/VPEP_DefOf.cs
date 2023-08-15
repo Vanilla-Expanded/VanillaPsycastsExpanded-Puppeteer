@@ -1,5 +1,7 @@
 ﻿using RimWorld;
 using Verse;
+using VFECore.Abilities;
+using AbilityDef = VFECore.Abilities.AbilityDef;
 
 namespace VPEPuppeteer
 {
@@ -17,5 +19,6 @@ namespace VPEPuppeteer
         public static HediffDef VPEP_Puppet;
         public static ThingDef VPEP_PsycastAreaEffect;
         public static SoundDef VPEP_Puppet_Master_Death;
+        public static AbilityDef VPEP_MindJump;
     }
 }

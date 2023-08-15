@@ -30,7 +30,13 @@ namespace VPEPuppeteer
                 pawn.health.AddHediff(masterHediff);
             }
             var coma = pawn.health.AddHediff(VPE_DefOf.PsychicComa);
-            coma.TryGetComp<HediffComp_Disappears>().ticksToDisappear = GenDate.TicksPerDay;
+            var compDisappears = coma.TryGetComp<HediffComp_Disappears>();
+
+            compDisappears.ticksToDisappear = GenDate.TicksPerHour * 3;
+            if (masterHediff.puppetCapacity > 0)
+            {
+                compDisappears.ticksToDisappear += GenDate.TicksPerHour * masterHediff.puppetCapacity;
+            }
 
             MoteAttachedScaled mote = MoteMaker.MakeAttachedOverlay(pawn, VPEP_DefOf.VPEP_PsycastAreaEffect, Vector3.zero) as MoteAttachedScaled;
             mote.maxScale = 9999;

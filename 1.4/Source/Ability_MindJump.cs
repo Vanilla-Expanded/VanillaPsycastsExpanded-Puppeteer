@@ -7,6 +7,7 @@ namespace VPEPuppeteer
 {
     public class Ability_MindJump : Ability_ShootProjectile
     {
+        public MindJump firedMindJump;
         public override bool IsEnabledForPawn(out string reason)
         {
             if (!pawn.IsPuppeteer(out var hediff) || hediff.puppets.Count == 0)
@@ -36,8 +37,20 @@ namespace VPEPuppeteer
 
         protected override Projectile ShootProjectile(GlobalTargetInfo target)
         {
-            var projectile = base.ShootProjectile(target) as MindJump;
-            return projectile;
+            firedMindJump = base.ShootProjectile(target) as MindJump;
+            firedMindJump.target = target.Thing as Pawn;
+            return firedMindJump;
+        }
+
+        public void LaunchProjectile(GlobalTargetInfo target)
+        {
+            ShootProjectile(target);
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_References.Look(ref firedMindJump, "firedMindJump");
         }
     }
 }

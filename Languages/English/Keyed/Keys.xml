@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguagData>
 
-	<VPEP.TargetCannotBeSameFactionAsCaster>Target cannot be from the same faction as the caster.</VPEP.TargetCannotBeSameFactionAsCaster>
-	<VPEP.TargetMustBeSameFactionAsCaster>Target must be prisoner or come from the same faction as the caster.</VPEP.TargetMustBeSameFactionAsCaster>
+	<VPEP.TargetCannotBeSameFactionAsCaster>Target cannot be colonist.</VPEP.TargetCannotBeSameFactionAsCaster>
+	<VPEP.TargetMustBeSameFactionAsCaster>Target must be prisoner or colonist.</VPEP.TargetMustBeSameFactionAsCaster>
 	<VPEP.TargetMustBePrisonerOrSlave>Target must be prisoner or slave.</VPEP.TargetMustBePrisonerOrSlave>
 	<VPEP.DegradePsycast>It was caused by the Degrade psycast.</VPEP.DegradePsycast>
 	<VPEP.TargetMustHaveBrainLeech>Target must have brain leech from the caster.</VPEP.TargetMustHaveBrainLeech>

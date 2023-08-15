@@ -11,12 +11,17 @@ namespace VPEPuppeteer
 
         public override string Label => base.Label + ": " + master.LabelShort;
 
-        public override bool ShouldRemove => master is null || master.Dead || pawn.Dead || pawn.Destroyed;
+        public override bool ShouldRemove => 
+            master.IsAliveOrTransferingMind() is false 
+            || pawn.IsAliveOrTransferingMind() is false;
 
         public override void Notify_PawnKilled()
         {
             base.Notify_PawnKilled();
-            pawn.health.RemoveHediff(this);
+            if (pawn.health.hediffSet.hediffs.Contains(this))
+            {
+                pawn.health.RemoveHediff(this);
+            }
         }
 
         public override void PostRemoved()

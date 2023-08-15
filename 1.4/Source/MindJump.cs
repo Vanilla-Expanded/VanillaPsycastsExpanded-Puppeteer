@@ -14,6 +14,8 @@ namespace VPEPuppeteer
     new(this.destination.x - this.origin.x, this.def.Altitude, this.destination.z - this.origin.z +
                                                                this.ArcHeightFactor * (4 - 8 * this.DistanceCoveredFraction));
 
+        public Pawn target;
+
         public override Quaternion ExactRotation => Quaternion.LookRotation(this.LookTowards);
 
         public override int DamageAmount => 0;
@@ -47,8 +49,17 @@ namespace VPEPuppeteer
 
         public override void Impact(Thing hitThing, bool blockedByShield = false)
         {
-            base.Impact(hitThing, blockedByShield);
-            if (hitThing is Pawn puppetToMaster && puppetToMaster.IsPuppet(out var hediff) && hediff.master == this.launcher)
+            var puppetToMaster = hitThing as Pawn;
+            if (puppetToMaster is null)
+            {
+                if (target != null && target.Map == this.Map && target.Position.DistanceTo(this.Position) <= 1.5f)
+                {
+                    puppetToMaster = target;
+                }
+            }
+
+            if (puppetToMaster != null && !puppetToMaster.Dead && !puppetToMaster.Destroyed 
+                && puppetToMaster.IsPuppet(out var hediff) && hediff.master == this.launcher)
             {
                 var coma = HediffMaker.MakeHediff(VPE_DefOf.PsychicComa, puppetToMaster);
                 coma.TryGetComp<HediffComp_Disappears>().ticksToDisappear = (int)((GenDate.TicksPerDay * 2) / puppetToMaster.GetStatValue(StatDefOf.PsychicSensitivity));
@@ -83,19 +94,19 @@ namespace VPEPuppeteer
 
                 var puppeteer = masterToPuppet.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Puppeteer) as Hediff_Puppeteer;
                 var puppet = puppetToMaster.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Puppet) as Hediff_Puppet;
-
                 Hediff_PuppetBase.preventRemoveEffects = true;
                 masterToPuppet.health.RemoveHediff(puppeteer);
                 puppetToMaster.health.RemoveHediff(puppet);
                 Hediff_PuppetBase.preventRemoveEffects = false;
 
-
                 puppet.master = puppetToMaster;
                 puppet.pawn = masterToPuppet;
                 puppeteer.pawn = puppetToMaster;
-                masterToPuppet.health.AddHediff(puppet);
+                if (!masterToPuppet.Dead && !masterToPuppet.Destroyed)
+                {
+                    masterToPuppet.health.AddHediff(puppet);
+                }
                 puppetToMaster.health.AddHediff(puppeteer);
-
                 var leeching = masterToPuppet.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Leeching) as Hediff_BrainLeech;
                 if (leeching != null)
                 {
@@ -108,7 +119,12 @@ namespace VPEPuppeteer
                 }
 
                 puppeteer.puppets.Remove(puppetToMaster);
-                puppeteer.puppets.Add(masterToPuppet);
+                if (!masterToPuppet.Dead)
+                {
+                    puppeteer.puppets.Add(masterToPuppet);
+                }
+
+                puppeteer.puppets.RemoveAll(x => x.Dead || x.Destroyed);
 
                 foreach (var otherPuppet in puppeteer.puppets)
                 {
@@ -133,8 +149,8 @@ namespace VPEPuppeteer
                 mindJump.AddEffecterToMaintain(SpawnEffecter(VPEP_DefOf.VPEP_PsycastSkipFlashPurple, puppetToMaster, puppetToMaster.Map, offset, 0.3f), puppetToMaster.Position, 60);
                 FleckMaker.Static(masterToPuppet.Position, puppetToMaster.Map, FleckDefOf.PsycastAreaEffect, 1.5f);
                 FleckMaker.Static(puppetToMaster.Position, puppetToMaster.Map, FleckDefOf.PsycastAreaEffect, 1.5f);
-
             }
+            base.Impact(hitThing, blockedByShield);
         }
 
         public Effecter SpawnEffecter(EffecterDef effecterDef, Thing target, Map map, Vector3 offset, float scale)
@@ -145,6 +161,12 @@ namespace VPEPuppeteer
             TargetInfo targetInfo = new TargetInfo(target.Position, map);
             effecter.Trigger(targetInfo, targetInfo);
             return effecter;
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref target, "target");
         }
     }
 }

@@ -94,6 +94,7 @@
     <Compile Include="HarmonyPatches\NeedsCardUtility_DoMoodAndThoughts_Patch.cs" />
     <Compile Include="HarmonyPatches\Need_ShowOnNeedList_Patch.cs" />
     <Compile Include="HarmonyPatches\Pawn_Destroy_Patch.cs" />
+    <Compile Include="HarmonyPatches\Pawn_Kill_Patch.cs" />
     <Compile Include="HarmonyPatches\Pawn_NeedsTracker_AddNeed_Patch.cs" />
     <Compile Include="HarmonyPatches\Pawn_NeedsTracker_ShouldHaveNeed_Patch.cs" />
     <Compile Include="HarmonyPatches\Pawn_RelationsTracker_OpinionOf_Patch.cs" />

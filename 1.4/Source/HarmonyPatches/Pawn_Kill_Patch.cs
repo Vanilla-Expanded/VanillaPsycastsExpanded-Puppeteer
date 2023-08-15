@@ -1,11 +1,10 @@
 ﻿using HarmonyLib;
-using System.Linq;
 using Verse;
 
 namespace VPEPuppeteer
 {
-    [HarmonyPatch(typeof(Pawn), "Destroy")]
-    public static class Pawn_Destroy_Patch
+    [HarmonyPatch(typeof(Pawn), "Kill")]
+    public static class Pawn_Kill_Patch
     {
         private static void Prefix(Pawn __instance)
         {
@@ -15,12 +14,6 @@ namespace VPEPuppeteer
                 {
                     __instance.health.RemoveHediff(puppeteer);
                 }
-            }
-
-            var hediff = __instance.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Puppet);
-            if (hediff != null)
-            {
-                __instance.health.RemoveHediff(hediff);
             }
         }
     }

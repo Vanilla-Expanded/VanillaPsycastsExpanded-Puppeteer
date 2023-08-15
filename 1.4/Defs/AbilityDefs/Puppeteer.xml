@@ -250,7 +250,7 @@
 				<path>VPEP_Puppeteer</path>
 				<level>5</level>
 				<order>1</order>
-				<psyfocusCost>0.3</psyfocusCost>
+				<psyfocusCost>0.45</psyfocusCost>
 				<entropyGain>0</entropyGain>
 				<prerequisites>
 					<li>VPEP_SummonPuppet</li>
