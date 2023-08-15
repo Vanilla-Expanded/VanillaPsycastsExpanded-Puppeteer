@@ -152,7 +152,7 @@
 	<VFECore.Abilities.AbilityDef ParentName="VPE_PsycastBase">
 		<defName>VPEP_Puppet</defName>
 		<label>puppet</label>
-		<description>Targeting a pawn affected by Brain Leech, this psycast permanently overwrites their personality with the caster’s own. Locks the short-term memory portion of the brain to synchronize with the caster, in turn putting them into a 24-hour coma. Number of puppets is initially limited to one.</description>
+		<description>Targeting a pawn affected by Brain Leech, this psycast permanently overwrites their personality with the caster’s own. Locks the short-term memory portion of the brain to synchronize with the caster, in turn putting them into a short coma. Number of puppets is initially limited to one.</description>
 		<iconPath>Abilities/Puppeteer/Puppet</iconPath>
 		<abilityClass>VPEPuppeteer.Ability_Puppet</abilityClass>
 		<targetMode>Pawn</targetMode>
@@ -216,7 +216,7 @@
 	<VFECore.Abilities.AbilityDef ParentName="VPE_PsycastBase">
 		<defName>VPEP_MindSplit</defName>
 		<label>mind split</label>
-		<description>By taking the psionic equivalent of a hammer and chisel to their own consciousness, the caster can permanently increase their limit of controllable puppets by one. Effectively painless as they knock themselves unconscious for 24 hours from shattering their sense of self.</description>
+		<description>By taking the psionic equivalent of a hammer and chisel to their own consciousness, the caster can permanently increase their limit of controllable puppets by one. Effectively painless as they knock themselves unconscious for a short duration from shattering their sense of self.</description>
 		<iconPath>Abilities/Puppeteer/MindSplit</iconPath>
 		<abilityClass>VPEPuppeteer.Ability_MindSplit</abilityClass>
 		<targetMode>Self</targetMode>
@@ -239,7 +239,7 @@
 	<VFECore.Abilities.AbilityDef ParentName="VPE_PsycastBase">
 		<defName>VPEP_PuppetSwarm</defName>
 		<label>puppet swarm</label>
-		<description>By causing an effect similar to an extreme case of “homesickness”, the caster can force all linked puppets to skip themselves to them almost instantaneously and regardless of distance. The effect targets the caster as well, resulting in a 12 hour coma due to confusion and whiplash.</description>
+		<description>By causing an effect similar to an extreme case of “homesickness”, the caster can force all linked puppets to skip themselves to them almost instantaneously and regardless of distance.</description>
 		<iconPath>Abilities/Puppeteer/PuppetSwarm</iconPath>
 		<abilityClass>VPEPuppeteer.Ability_PuppetSwarm</abilityClass>
 		<targetMode>Self</targetMode>
