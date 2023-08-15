@@ -40,8 +40,7 @@ namespace VPEPuppeteer
             {
                 if (mindJump.firedMindJump.DestroyedOrNull())
                 {
-                    var availablePuppet = puppets.Where(x => x.Map == pawn.MapHeld
-                        && x.Position.DistanceTo(pawn.Position) <= mindJump.GetRangeForPawn())
+                    var availablePuppet = puppets.Where(x => x.Map == pawn.MapHeld && mindJump.CanHitTarget(x))
                             .OrderBy(x => x.Position.DistanceTo(pawn.Position)).FirstOrDefault();
                     if (availablePuppet != null)
                     {
