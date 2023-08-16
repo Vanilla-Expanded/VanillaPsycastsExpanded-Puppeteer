@@ -67,7 +67,10 @@ namespace VPEPuppeteer
             var traits = target.story.traits.allTraits.ToList();
             foreach (var t in traits)
             {
-                target.story.traits.RemoveTrait(t);
+                if (t.sourceGene is null)
+                {
+                    target.story.traits.RemoveTrait(t);
+                }
             }
             foreach (var t in pawn.story.traits.allTraits)
             {
@@ -82,6 +85,13 @@ namespace VPEPuppeteer
                 targetSkill.passion = skill.passion;
             }
             target.relations.ClearAllRelations();
+
+            var brainLeech = target.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_BrainLeech);
+            if (brainLeech != null)
+            {
+                target.health.RemoveHediff(brainLeech);
+            }
+
             var masterHediff = pawn.health.hediffSet.GetFirstHediffOfDef(VPEP_DefOf.VPEP_Puppeteer) as Hediff_Puppeteer;
             if (masterHediff is null)
             {

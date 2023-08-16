@@ -2,6 +2,7 @@
 using RimWorld.Planet;
 using VanillaPsycastsExpanded;
 using Verse;
+using Verse.Sound;
 using Ability = VFECore.Abilities.Ability;
 
 namespace VPEPuppeteer
@@ -33,8 +34,10 @@ namespace VPEPuppeteer
                 {
                     puppet.DeSpawn();
                 }
+                SoundDefOf.Psycast_Skip_Entry.PlayOneShot(new TargetInfo(puppet.Position, pawn.Map));
                 GenPlace.TryPlaceThing(puppet, pawn.Position, pawn.Map, ThingPlaceMode.Near);
             }
+            SoundDefOf.Psycast_Skip_Exit.PlayOneShot(new TargetInfo(pawn.Position, pawn.Map));
         }
     }
 }
