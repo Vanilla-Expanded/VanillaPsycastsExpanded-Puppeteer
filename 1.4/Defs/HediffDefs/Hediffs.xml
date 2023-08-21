@@ -116,6 +116,7 @@
 		<label>subjugation</label>
 		<description>A psychic indoctrination that reduces consciousness, manipulation and breathing of the subject until they reach a breaking point and join your colony.</description>
 		<hediffClass>VPEPuppeteer.Hediff_Subjugation</hediffClass>
+		<initialSeverity>0.5</initialSeverity>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>0.0714</severityPerDay>

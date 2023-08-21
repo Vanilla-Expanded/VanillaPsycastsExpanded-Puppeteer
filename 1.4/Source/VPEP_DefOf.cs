@@ -20,5 +20,6 @@ namespace VPEPuppeteer
         public static ThingDef VPEP_PsycastAreaEffect;
         public static SoundDef VPEP_Puppet_Master_Death;
         public static AbilityDef VPEP_MindJump;
+        public static PuppetSettings VPEP_PuppetSettings;
     }
 }

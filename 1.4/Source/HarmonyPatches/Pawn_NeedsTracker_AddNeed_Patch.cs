@@ -12,7 +12,7 @@ namespace VPEPuppeteer
         {
             if (___pawn.IsPuppet())
             {
-                if (nd != NeedDefOf.Food && nd != NeedDefOf.Rest)
+                if (VPEP_DefOf.VPEP_PuppetSettings.needsForPuppets.Contains(nd.defName) is false)
                 {
                     return false;
                 }

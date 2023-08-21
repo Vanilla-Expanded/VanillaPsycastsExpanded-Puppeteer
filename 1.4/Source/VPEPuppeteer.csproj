@@ -108,6 +108,7 @@
     <Compile Include="JobDriver_StripGear.cs" />
     <Compile Include="MindJump.cs" />
     <Compile Include="PuppetBandwidthGizmo.cs" />
+    <Compile Include="PuppetSettings.cs" />
     <Compile Include="VPEPuppeteerMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VPEPUtils.cs" />
