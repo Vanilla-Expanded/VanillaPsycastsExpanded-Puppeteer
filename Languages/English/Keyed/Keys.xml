@@ -13,4 +13,6 @@
 	<VPEP.PuppetsUsage>Current puppets:</VPEP.PuppetsUsage>
 	<VPEP.TargetMustBePuppetOfCaster>Target must be a puppet of the caster.</VPEP.TargetMustBePuppetOfCaster>
 	<VPEP.NoPuppets>No puppets.</VPEP.NoPuppets>
+	<VPEP.MindJumpTitle>Mind jump</VPEP.MindJumpTitle>
+	<VPEP.MindJumpText>{Puppeteer_nameDef} has died. Before {Puppeteer_pronoun} died, {Puppeteer_pronoun} used the mind jump ability on {NewPuppeteer_nameDef}. Now {NewPuppeteer_nameDef} is a new puppeteer.</VPEP.MindJumpText>
 </LanguagData>

@@ -15,12 +15,15 @@ namespace VPEPuppeteer
             master.IsAliveOrTransferingMind() is false 
             || pawn.IsAliveOrTransferingMind() is false;
 
+        public bool pawnKilled;
         public override void Notify_PawnKilled()
         {
             base.Notify_PawnKilled();
             if (pawn.health.hediffSet.hediffs.Contains(this))
             {
+                pawnKilled = true;
                 pawn.health.RemoveHediff(this);
+                pawnKilled = false;
             }
         }
 
@@ -29,8 +32,9 @@ namespace VPEPuppeteer
             base.PostRemoved();
             if (!preventRemoveEffects)
             {
-                if (!pawn.Dead)
+                if (!pawn.Dead && !pawnKilled)
                 {
+                    Log.Message("Adding abasia");
                     pawn.health.AddHediff(HediffDefOf.Abasia);
                     var coma = pawn.health.AddHediff(VPE_DefOf.PsychicComa);
                     coma.TryGetComp<HediffComp_Disappears>().ticksToDisappear = GenDate.TicksPerDay;

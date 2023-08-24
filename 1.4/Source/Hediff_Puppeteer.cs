@@ -40,16 +40,32 @@ namespace VPEPuppeteer
             {
                 if (mindJump.firedMindJump.DestroyedOrNull())
                 {
-                    var availablePuppet = puppets.Where(x => x.Map == pawn.MapHeld && mindJump.CanHitTarget(x))
-                            .OrderBy(x => x.Position.DistanceTo(pawn.Position)).FirstOrDefault();
-                    if (availablePuppet != null)
+                    if (pawn.MapHeld != null)
                     {
-                        mindJump.LaunchProjectile(new GlobalTargetInfo(availablePuppet));
-                        return true;
+                        var availablePuppet = puppets.Where(x => x.Map == pawn.MapHeld && mindJump.CanHitTarget(x))
+        .OrderBy(x => x.Position.DistanceTo(pawn.PositionHeld)).FirstOrDefault();
+                        if (availablePuppet != null)
+                        {
+                            mindJump.LaunchProjectile(new GlobalTargetInfo(availablePuppet));
+                            return true;
+                        }
                     }
                     else
                     {
-                        return false;
+                        var parentHolder = pawn.ParentHolder;
+                        if (parentHolder != null)
+                        {
+                            var thingOwner = parentHolder.GetDirectlyHeldThings();
+                            if (thingOwner != null)
+                            {
+                                if (thingOwner.OfType<Pawn>().Where(x => puppets.Contains(x))
+                                    .TryRandomElement(out var puppet))
+                                {
+                                    MindJump.TransferMind(puppet, pawn);
+                                    return true;
+                                }
+                            }
+                        }
                     }
                 }
                 else
