@@ -157,6 +157,14 @@ namespace VPEPuppeteer
                 }
             }
 
+            PawnComponentsUtility.AddAndRemoveDynamicComponents(masterToPuppet);
+            PawnComponentsUtility.AddAndRemoveDynamicComponents(puppetToMaster);
+
+            if (puppetToMaster.guest != null)
+            {
+                puppetToMaster.guest.SetGuestStatus(null);
+            }
+
             Find.LetterStack.ReceiveLetter("VPEP.MindJumpTitle".Translate(),
                 "VPEP.MindJumpText".Translate(masterToPuppet.Named("Puppeteer"), puppetToMaster.Named("NewPuppeteer")), LetterDefOf.NeutralEvent, new List<Pawn>
                 {
