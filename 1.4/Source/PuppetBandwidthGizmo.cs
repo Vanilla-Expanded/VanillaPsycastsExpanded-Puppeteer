@@ -35,7 +35,8 @@ namespace VPEPuppeteer
             int totalBandwidth = hediff.puppetCapacity;
             int usedBandwidth = hediff.puppets.Count;
             string text = usedBandwidth.ToString("F0") + " / " + totalBandwidth.ToString("F0");
-            TaggedString taggedString = "VPEP.Puppets".Translate().Colorize(ColoredText.TipSectionTitleColor) + ": " + text + "\n\n" + "VPEP.PuppetsGizmoTip".Translate(totalBandwidth);
+            TaggedString taggedString = "VPEP.Puppets".Translate().Colorize(ColoredText.TipSectionTitleColor) + ": " + text + "\n\n" 
+                + "VPEP.PuppetsGizmoTip".Translate(hediff.GetComaDuration().ToStringTicksToPeriod(), totalBandwidth);
             int usedBandwidthFromSubjects = hediff.puppets.Count;
             if (usedBandwidthFromSubjects > 0)
             {

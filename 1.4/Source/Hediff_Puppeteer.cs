@@ -1,6 +1,8 @@
-﻿using RimWorld.Planet;
+﻿using RimWorld;
+using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Linq;
+using VanillaPsycastsExpanded;
 using Verse;
 using Verse.Sound;
 using VFECore.Abilities;
@@ -89,6 +91,25 @@ namespace VPEPuppeteer
             }
             VPEP_DefOf.VPEP_Puppet_Master_Death.PlayOneShot(pawn);
             puppets.Clear();
+        }
+
+        public void AddComa()
+        {
+            var coma = HediffMaker.MakeHediff(VPE_DefOf.PsychicComa, pawn);
+            var compDisappears = coma.TryGetComp<HediffComp_Disappears>();
+            compDisappears.ticksToDisappear = GetComaDuration();
+            pawn.health.AddHediff(coma);
+        }
+
+        public int GetComaDuration()
+        {
+            var comaDuration = (GenDate.TicksPerHour * 3);
+            int puppetCountPrevTime = this.puppets.Count - 1;
+            if (puppetCountPrevTime > 0)
+            {
+                comaDuration += (GenDate.TicksPerHour * puppetCountPrevTime);
+            }
+            return comaDuration;
         }
 
         public override IEnumerable<Gizmo> GetGizmos()

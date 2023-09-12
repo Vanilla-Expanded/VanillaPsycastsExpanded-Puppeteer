@@ -115,16 +115,9 @@ namespace VPEPuppeteer
             }
 
             target.Notify_DisabledWorkTypesChanged();
-            var coma = HediffMaker.MakeHediff(VPE_DefOf.PsychicComa, pawn);
-            var compDisappears = coma.TryGetComp<HediffComp_Disappears>();
-            compDisappears.ticksToDisappear = (GenDate.TicksPerHour * 3);
-            int puppetCountPrevTime = masterHediff.puppets.Count - 1;
-            if (puppetCountPrevTime > 0)
-            {
-                compDisappears.ticksToDisappear += (GenDate.TicksPerHour * puppetCountPrevTime);
-            }
-            pawn.health.AddHediff(coma);
+            masterHediff.AddComa();
             PawnComponentsUtility.AddAndRemoveDynamicComponents(target);
         }
+
     }
 }
