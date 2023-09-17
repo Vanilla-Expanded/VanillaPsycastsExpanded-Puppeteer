@@ -74,7 +74,10 @@ namespace VPEPuppeteer
             }
             foreach (var t in pawn.story.traits.allTraits)
             {
-                target.story.traits.GainTrait(new Trait(t.def, t.degree));
+                if (t.sourceGene is null)
+                {
+                    target.story.traits.GainTrait(new Trait(t.def, t.degree));
+                }
             }
             foreach (var skill in pawn.skills.skills)
             {
