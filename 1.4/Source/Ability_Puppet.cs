@@ -101,7 +101,7 @@ namespace VPEPuppeteer
                 masterHediff = HediffMaker.MakeHediff(VPEP_DefOf.VPEP_Puppeteer, pawn, pawn.health.hediffSet.GetBrain()) as Hediff_Puppeteer;
                 pawn.health.AddHediff(masterHediff);
             }
-            var puppetHediff = HediffMaker.MakeHediff(VPEP_DefOf.VPEP_Puppet, pawn, pawn.health.hediffSet.GetBrain()) as Hediff_Puppet;
+            var puppetHediff = HediffMaker.MakeHediff(VPEP_DefOf.VPEP_Puppet, target, target.health.hediffSet.GetBrain()) as Hediff_Puppet;
             puppetHediff.master = pawn;
             masterHediff.puppets.Add(target);
             target.health.AddHediff(puppetHediff);
