@@ -9,7 +9,7 @@ namespace VPEPuppeteer
     {
         public static void Postfix(SkillRecord __instance, Pawn ___pawn, float xp, bool direct = false)
         {
-            if (___pawn.IsPuppet(out var hediff_Puppet))
+            if (___pawn.IsPuppet(out var hediff_Puppet) && xp > 0)
             {
                 var skillRecord = hediff_Puppet.master.skills.GetSkill(__instance.def);
                 skillRecord.Learn(xp, direct);
