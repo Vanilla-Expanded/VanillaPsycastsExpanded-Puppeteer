@@ -16,11 +16,17 @@ namespace VPEPuppeteer
                     {
                         pawn.SetFaction(Faction.OfPlayer);
                         pawn.guest.SetGuestStatus(null);
+                        pawn.guest.Released = true;
                     }
                     else
                     {
                         pawn.guest.Recruitable = true;
                     }
+                }
+                else if (pawn.IsPrisoner)
+                {
+                    pawn.guest.SetGuestStatus(null);
+                    pawn.guest.Released = true;
                 }
             }
         }
