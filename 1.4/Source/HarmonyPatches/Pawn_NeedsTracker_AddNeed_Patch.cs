@@ -10,12 +10,18 @@ namespace VPEPuppeteer
         [HarmonyPriority(int.MaxValue)]
         public static bool Prefix(Pawn ___pawn, NeedDef nd)
         {
-            if (___pawn.IsPuppet())
+            if (___pawn.IsPuppet() && nd.PuppetCanHaveNeed() is false)
             {
-                if (VPEP_DefOf.VPEP_PuppetSettings.needsForPuppets.Contains(nd.defName) is false)
-                {
-                    return false;
-                }
+                return false;
+            }
+            return true;
+        }
+        public static bool PuppetCanHaveNeed(this NeedDef nd)
+        {
+            if (VPEP_DefOf.VPEP_PuppetSettings.needsForPuppets.Contains(nd.defName) is false
+                && nd.onlyIfCausedByHediff is false && nd.onlyIfCausedByGene is false && nd.onlyIfCausedByTrait is false)
+            {
+                return false;
             }
             return true;
         }

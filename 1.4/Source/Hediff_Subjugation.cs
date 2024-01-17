@@ -15,6 +15,7 @@ namespace VPEPuppeteer
                     if (pawn.guest.Recruitable)
                     {
                         pawn.SetFaction(Faction.OfPlayer);
+                        pawn.guest.SetGuestStatus(null);
                     }
                     else
                     {

@@ -11,12 +11,9 @@ namespace VPEPuppeteer
         [HarmonyPriority(int.MinValue)]
         public static void Postfix(Pawn ___pawn, NeedDef nd, ref bool __result)
         {
-            if (___pawn.IsPuppet())
+            if (___pawn.IsPuppet() && nd.PuppetCanHaveNeed() is false)
             {
-                if (VPEP_DefOf.VPEP_PuppetSettings.needsForPuppets.Contains(nd.defName) is false)
-                {
-                    __result = false;
-                }
+                __result = false;
             }
         }
     }
