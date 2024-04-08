@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<VPEPuppeteer.PuppetSettings>
+		<defName>VPEP_PuppetSettings</defName>
+		<label>this def will have various settings used for puppets. Can be used for mod compatibility from outside via xml patches.</label>
+        <needsForPuppets>
+			<li>Food</li>
+			<li>Rest</li>
+			<li>Mood</li>
+			<li>Bladder</li>
+			<li>Hygiene</li>
+			<li>DBHThirst</li>
+			<li>VME_Desserts</li>
+		</needsForPuppets>
+	</VPEPuppeteer.PuppetSettings>
+
+</Defs>

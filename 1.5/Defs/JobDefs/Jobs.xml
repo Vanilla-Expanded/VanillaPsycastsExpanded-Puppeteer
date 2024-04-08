@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <JobDef>
+    <defName>VPEP_StripGear</defName>
+    <driverClass>VPEPuppeteer.JobDriver_StripGear</driverClass>
+    <reportString>stripping gear.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <playerInterruptible>false</playerInterruptible>
+  </JobDef>
+  
+</Defs>

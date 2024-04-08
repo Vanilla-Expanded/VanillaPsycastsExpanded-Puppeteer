@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>VPEP_Degrade</defName>
+		<label>degrade</label>
+		<thingClass>VPEPuppeteer.Degrade</thingClass>
+		<tickerType>Normal</tickerType>
+		<altitudeLayer>VisEffects</altitudeLayer>
+		<drawOffscreen>true</drawOffscreen>
+		<graphicData>
+			<texPath>Effects/Puppeteer/Degrade/DegradeProjectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Cut</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<speed>20</speed>
+		</projectile>
+		<comps>
+			<li Class="VFECore.CompProperties_HomingProjectile">
+				<homingDistanceFractionPassed>0</homingDistanceFractionPassed>
+				<homingCorrectionTickRate>1</homingCorrectionTickRate>
+				<initialDispersionFromTarget>0</initialDispersionFromTarget>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>VPEP_MindJump</defName>
+		<label>mind jump</label>
+		<thingClass>VPEPuppeteer.MindJump</thingClass>
+		<graphicData Class="VanillaPsycastsExpanded.Graphics.GraphicData_Animated">
+			<texPath>Effects/Puppeteer/MindjumpGhost</texPath>
+			<ticksPerFrame>5</ticksPerFrame>
+			<graphicClass>VanillaPsycastsExpanded.Graphics.Graphic_Animated</graphicClass>
+			<drawSize>(4, 8)</drawSize>
+			<shaderType>MoteGlow</shaderType>
+		</graphicData>
+		<drawOffscreen>true</drawOffscreen>
+		<drawerType>RealtimeOnly</drawerType>
+		<projectile>
+			<damageDef>Cut</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<speed>20</speed>
+			<arcHeightFactor>50</arcHeightFactor>
+			<shadowSize>0.6</shadowSize>
+		</projectile>
+	</ThingDef>
+</Defs>
