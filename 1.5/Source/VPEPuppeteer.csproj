@@ -82,7 +82,6 @@
     <Compile Include="Ability_SummonPuppet.cs" />
     <Compile Include="Degrade.cs" />
     <Compile Include="CachedResult.cs" />
-    <Compile Include="HarmonyPatches\Hediff_Psylink_TryGiveAbilityOfLevel_Patch.cs" />
     <Compile Include="HarmonyPatches\InspectPaneFiller_DrawMood_Patch.cs" />
     <Compile Include="HarmonyPatches\MentalBreaker_BreakExtremeIsApproaching_Patch.cs" />
     <Compile Include="HarmonyPatches\MentalBreaker_BreakExtremeIsImminent_Patch.cs" />
