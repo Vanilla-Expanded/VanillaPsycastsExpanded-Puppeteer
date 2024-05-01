@@ -12,10 +12,6 @@
 			<displayName>Royalty</displayName>
 		</li>
 		<li>
-			<packageId>Ludeon.RimWorld.Biotech</packageId>
-			<displayName>Biotech</displayName>
-		</li>
-		<li>
 			<packageId>VanillaExpanded.VPsycastsE</packageId>
 			<displayName>Vanilla Psycasts Expanded</displayName>
 			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2842502659</steamWorkshopUrl>
