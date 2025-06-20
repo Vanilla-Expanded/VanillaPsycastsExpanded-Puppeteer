@@ -39,9 +39,9 @@ public class Hediff_BrainLeech : HediffWithComps
         }
     }
 
-    public override void Tick()
+    public override void TickInterval(int delta)
     {
-        base.Tick();
+        base.TickInterval(delta);
         if (Find.TickManager.TicksGame > lastTickCheck + GenDate.TicksPerHour * 12f)
         {
             lastTickCheck = Find.TickManager.TicksGame;
