@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_BrainCut</defName>
+		<label>brain cut</label>
+		<description>An intentional misuse of the reprogramming psycast which creates a permanent rift in the target’s brain. The damage scales with the target’s psychic sensitivity and always disorients for 2 seconds.</description>
+		<iconPath>Abilities/Puppeteer/BrainCut</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_BrainCut</abilityClass>
+		<targetMode>Pawn</targetMode>
+		<castSound>VPEP_Braincut_Cast</castSound>
+		<targetingParameters>
+			<canTargetBuildings>False</canTargetBuildings>
+			<canTargetSelf>False</canTargetSelf>
+			<canTargetAnimals>True</canTargetAnimals>
+			<canTargetPawns>True</canTargetPawns>
+			<canTargetHumans>True</canTargetHumans>
+			<canTargetMechs>False</canTargetMechs>
+		</targetingParameters>
+		<power>2</power>
+		<powerStatFactors>
+			<PsychicSensitivity>1</PsychicSensitivity>
+		</powerStatFactors>
+		<range>21</range>
+		<castTime>120</castTime>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>1</level>
+				<order>1</order>
+				<psyfocusCost>0.04</psyfocusCost>
+				<entropyGain>16</entropyGain>
+				<psychic>true</psychic>
+			</li>
+			<li Class="VPEPuppeteer.AbilityExtension_TargetValidator">
+				<notOfCasterFaction>True</notOfCasterFaction>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastGoToTargetBase">
+		<defName>VPEP_BrainLeech</defName>
+		<label>brain leech</label>
+		<description>Creates a psionic link on a colleague or prisoner that redirects brain processing power to the leacher. The effect is inefficient and reaches its maximum after 2 days before fading into obscurity. Only a single leech can be maintained.</description>
+		<iconPath>Abilities/Puppeteer/BrainLeech</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_BrainLeech</abilityClass>
+		<castSound>VPEP_Brainleech_Cast</castSound>
+		<targetMode>Pawn</targetMode>
+		<distanceToTarget>1.5</distanceToTarget>
+		<needsTicking>true</needsTicking>
+		<drawAimPie>false</drawAimPie>
+		<targetingParameters>
+			<canTargetBuildings>False</canTargetBuildings>
+			<canTargetSelf>False</canTargetSelf>
+			<canTargetAnimals>False</canTargetAnimals>
+			<canTargetPawns>True</canTargetPawns>
+			<canTargetHumans>True</canTargetHumans>
+			<canTargetMechs>False</canTargetMechs>
+		</targetingParameters>
+		<castTime>300</castTime>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>1</level>
+				<order>2</order>
+				<psyfocusCost>0.4</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<psychic>True</psychic>
+			</li>
+			<li Class="VPEPuppeteer.AbilityExtension_TargetValidator">
+				<ofCasterFaction>True</ofCasterFaction>
+				<allowPrisoners>True</allowPrisoners>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastGoToTargetBase">
+		<defName>VPEP_Subjugation</defName>
+		<label>subjugation</label>
+		<description>Induces a form of indoctrination on a prisoner by altering neuron pathways so that thoughts of the target’s faction triggers negative reactions. The effects are quite nauseating and “convinces” them to switch sides after 7 days.</description>
+		<iconPath>Abilities/Puppeteer/Subjugation</iconPath>
+		<abilityClass>VEF.Abilities.Ability_Blank</abilityClass>
+		<targetMode>Pawn</targetMode>
+		<distanceToTarget>1.5</distanceToTarget>
+		<drawAimPie>false</drawAimPie>
+		<durationTime>420000</durationTime>
+		<castSound>VPEP_Subjugation_Cast</castSound>
+		<targetingParameters>
+			<canTargetBuildings>False</canTargetBuildings>
+			<canTargetSelf>False</canTargetSelf>
+			<canTargetAnimals>False</canTargetAnimals>
+			<canTargetPawns>True</canTargetPawns>
+			<canTargetHumans>True</canTargetHumans>
+			<canTargetMechs>False</canTargetMechs>
+		</targetingParameters>
+		<castTime>300</castTime>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>2</level>
+				<order>1</order>
+				<psyfocusCost>0.5</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>VPEP_BrainLeech</li>
+				</prerequisites>
+				<psychic>True</psychic>
+			</li>
+			<li Class="VEF.Abilities.AbilityExtension_Hediff">
+				<hediff>VPEP_Subjugation</hediff>
+			</li>
+			<li Class="VPEPuppeteer.AbilityExtension_TargetValidator">
+				<allowPrisoners>True</allowPrisoners>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_Degrade</defName>
+		<label>degrade</label>
+		<description>Reverts the humanoid target’s behavioral instincts to a considerably more primitive state, forcibly triggering the mental break “run wild”.</description>
+		<iconPath>Abilities/Puppeteer/Degrade</iconPath>
+		<abilityClass>VEF.Abilities.Ability_ShootProjectile</abilityClass>
+		<castTime>240</castTime>
+		<range>21.9</range>
+		<castSound>VPEP_Degrade_Cast</castSound>
+		<targetingParameters>
+			<canTargetPawns>true</canTargetPawns>
+			<canTargetBuildings>false</canTargetBuildings>
+			<canTargetMechs>false</canTargetMechs>
+		</targetingParameters>
+		<targetMode>Pawn</targetMode>
+		<goodwillImpact>-10</goodwillImpact>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>2</level>
+				<order>2</order>
+				<psyfocusCost>0.14</psyfocusCost>
+				<entropyGain>16</entropyGain>
+				<prerequisites>
+					<li>VPEP_BrainLeech</li>
+				</prerequisites>
+				<psychic>true</psychic>
+			</li>
+			<li Class="VEF.Abilities.AbilityExtension_Projectile">
+				<projectile>VPEP_Degrade</projectile>
+				<hitFlags>All</hitFlags>
+				<soundOnImpact>VPEP_Degrade_Hit</soundOnImpact>
+			</li>
+			<li Class="VPEPuppeteer.AbilityExtension_TargetValidator"></li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_Puppet</defName>
+		<label>puppet</label>
+		<description>Targeting a pawn affected by Brain Leech, this psycast permanently overwrites their personality with the caster’s own. Locks the short-term memory portion of the brain to synchronize with the caster, in turn putting them into a short coma. Number of puppets is initially limited to one.</description>
+		<iconPath>Abilities/Puppeteer/Puppet</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_Puppet</abilityClass>
+		<targetMode>Pawn</targetMode>
+		<range>5</range>
+		<targetingParameters>
+			<canTargetBuildings>False</canTargetBuildings>
+			<canTargetSelf>False</canTargetSelf>
+			<canTargetAnimals>False</canTargetAnimals>
+			<canTargetPawns>True</canTargetPawns>
+			<canTargetHumans>True</canTargetHumans>
+			<canTargetMechs>False</canTargetMechs>
+		</targetingParameters>
+		<castTime>1200</castTime>
+		<castSound>VPEP_Puppet_Hit</castSound>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>3</level>
+				<order>1</order>
+				<psyfocusCost>0.4</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>VPEP_Subjugation</li>
+				</prerequisites>
+				<psychic>true</psychic>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_SummonPuppet</defName>
+		<label>summon puppet</label>
+		<description>By causing an effect similar to an extreme case of “homesickness”, the caster can force the puppet to skip itself to them almost instantaneously and regardless of distance.</description>
+		<iconPath>Abilities/Puppeteer/SummonPuppet</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_SummonPuppet</abilityClass>
+		<targetMode>Pawn</targetMode>
+		<range>99999</range>
+		<targetingParameters>
+			<canTargetBuildings>False</canTargetBuildings>
+			<canTargetSelf>False</canTargetSelf>
+			<canTargetAnimals>False</canTargetAnimals>
+			<canTargetPawns>True</canTargetPawns>
+			<canTargetHumans>True</canTargetHumans>
+			<canTargetMechs>False</canTargetMechs>
+		</targetingParameters>
+		<castTime>15</castTime>
+		<needsTicking>True</needsTicking>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>4</level>
+				<order>1</order>
+				<psyfocusCost>0.24</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>VPEP_Puppet</li>
+				</prerequisites>
+				<psychic>true</psychic>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_MindSplit</defName>
+		<label>mind split</label>
+		<description>By taking the psionic equivalent of a hammer and chisel to their own consciousness, the caster can permanently increase their limit of controllable puppets by one. Effectively painless as they knock themselves unconscious for a short duration from shattering their sense of self.</description>
+		<iconPath>Abilities/Puppeteer/MindSplit</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_MindSplit</abilityClass>
+		<targetMode>Self</targetMode>
+		<castTime>600</castTime>
+		<castSound>VPEP_MindSplit_Hit</castSound>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>4</level>
+				<order>2</order>
+				<psyfocusCost>0.8</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>VPEP_Puppet</li>
+				</prerequisites>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_PuppetSwarm</defName>
+		<label>puppet swarm</label>
+		<description>By causing an effect similar to an extreme case of “homesickness”, the caster can force all linked puppets to skip themselves to them almost instantaneously and regardless of distance.</description>
+		<iconPath>Abilities/Puppeteer/PuppetSwarm</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_PuppetSwarm</abilityClass>
+		<targetMode>Self</targetMode>
+		<castTime>300</castTime>
+		<needsTicking>True</needsTicking>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>5</level>
+				<order>1</order>
+				<psyfocusCost>0.45</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>VPEP_SummonPuppet</li>
+				</prerequisites>
+				<psychic>true</psychic>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_Ascension</defName>
+		<label>ascension</label>
+		<description>Targets a controlled puppet and causes them to commit suicide through psychic overload, annihilating itself and the surrounding 5 tiles. The sum of the puppet’s learned skills is converted into psychic energy for the detonation, with a fraction absorbed by the caster as psycasting XP.</description>
+		<iconPath>Abilities/Puppeteer/Ascension</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_Ascension</abilityClass>
+		<targetMode>Pawn</targetMode>
+		<range>19</range>
+		<needsTicking>True</needsTicking>
+		<castSound>VPEP_Ascension_Cast</castSound>
+		<targetingParameters>
+			<canTargetBuildings>False</canTargetBuildings>
+			<canTargetSelf>False</canTargetSelf>
+			<canTargetAnimals>False</canTargetAnimals>
+			<canTargetPawns>True</canTargetPawns>
+			<canTargetHumans>True</canTargetHumans>
+			<canTargetMechs>False</canTargetMechs>
+		</targetingParameters>
+		<castTime>240</castTime>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>5</level>
+				<order>2</order>
+				<psyfocusCost>0.16</psyfocusCost>
+				<entropyGain>60</entropyGain>
+				<prerequisites>
+					<li>VPEP_Puppet</li>
+				</prerequisites>
+				<psychic>true</psychic>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+
+	<VEF.Abilities.AbilityDef ParentName="VPE_PsycastBase">
+		<defName>VPEP_MindJump</defName>
+		<label>mind jump</label>
+		<description>Permanently swaps the caster and the targeted puppet’s bodies, with the puppet becoming the master with all of their psycasting capabilities. The sudden change in consciousness and adaptation to a new vessel locks the new master into a scaled 48-hour psychic coma.</description>
+		<iconPath>Abilities/Puppeteer/MindJump</iconPath>
+		<abilityClass>VPEPuppeteer.Ability_MindJump</abilityClass>
+		<castTime>1200</castTime>
+		<range>55</range>
+		<requireLineOfSight>false</requireLineOfSight>
+		<targetingParameters>
+			<canTargetPawns>true</canTargetPawns>
+			<canTargetBuildings>false</canTargetBuildings>
+			<canTargetMechs>false</canTargetMechs>
+		</targetingParameters>
+		<targetMode>Pawn</targetMode>
+		<needsTicking>true</needsTicking>
+		<modExtensions>
+			<li Class="VanillaPsycastsExpanded.AbilityExtension_Psycast">
+				<path>VPEP_Puppeteer</path>
+				<level>5</level>
+				<order>3</order>
+				<psyfocusCost>0.50</psyfocusCost>
+				<entropyGain>0</entropyGain>
+				<prerequisites>
+					<li>VPEP_MindSplit</li>
+				</prerequisites>
+				<psychic>true</psychic>
+			</li>
+			<li Class="VEF.Abilities.AbilityExtension_Projectile">
+				<projectile>VPEP_MindJump</projectile>
+				<soundOnImpact>VPEP_MindJump_Hit</soundOnImpact>
+			</li>
+		</modExtensions>
+	</VEF.Abilities.AbilityDef>
+	
+</Defs>

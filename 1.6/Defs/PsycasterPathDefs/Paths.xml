@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <VanillaPsycastsExpanded.PsycasterPathDef>
+    <defName>VPEP_Puppeteer</defName>
+    <label>puppeteer</label>
+    <description>Puppeteers provide the ways to exploit minds and dominate others. They are the masters of subjugating enemies and creating mindless husks upon which they feed.</description>
+    <background>UI/Backgrounds/PuppeteerPath</background>
+    <altBackground>UI/AlternativeBackgrounds/PathBG_Puppeteer</altBackground>
+    <tab>Psycasts</tab>
+    <tooltip>Masters of psychic manipulation, puppeteers can delve into minds, inflicting deep psychic wounds or taking control. They craft mindless puppets, extensions of their own will, which collect knowledge and serve their whims. In times of danger, a puppeteer can transfer their very essence into a puppet, achieving a form of immortality. This arcane art is jealously guarded, known only to the elite empire-born nobles.</tooltip>
+    <lockedReason>Imperials only</lockedReason>
+    <requiredBackstoriesAny>
+      <li>
+        <categoryName>ImperialFighter</categoryName>
+        <slot>Childhood</slot>
+      </li>
+      <li>
+        <categoryName>ImperialFighter</categoryName>
+        <slot>Adulthood</slot>
+      </li>
+      <li>
+        <categoryName>ImperialRoyal</categoryName>
+        <slot>Childhood</slot>
+      </li>
+      <li>
+        <categoryName>ImperialRoyal</categoryName>
+        <slot>Adulthood</slot>
+      </li>
+    </requiredBackstoriesAny>
+  </VanillaPsycastsExpanded.PsycasterPathDef>
+
+</Defs>
