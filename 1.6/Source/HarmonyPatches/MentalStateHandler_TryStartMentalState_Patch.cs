@@ -10,21 +10,27 @@ public static class MentalStateHandler_TryStartMentalState_Patch
     public static bool shouldStartMentalState;
 
     [HarmonyPriority(int.MaxValue)]
-    public static bool Prefix(MentalStateHandler __instance, Pawn ___pawn, MentalStateDef stateDef, string reason = null, bool forced = false, bool forceWake = false, bool causedByMood = false, Pawn otherPawn = null, bool transitionSilently = false, bool causedByDamage = false, bool causedByPsycast = false)
+    public static bool Prefix(Pawn ___pawn)
     {
-        if (___pawn.IsPuppeteer(out var hediff))
+        return shouldStartMentalState || !___pawn.IsPuppet();
+    }
+
+    public static void Postfix(Pawn ___pawn, MentalStateDef stateDef, string reason, bool forced, bool forceWake, bool causedByMood, Pawn otherPawn, bool transitionSilently, bool causedByDamage, bool causedByPsycast, bool __result)
+    {
+        if (__result && ___pawn.IsPuppeteer(out var hediff))
         {
-            shouldStartMentalState = true;
-            foreach (var puppet in hediff.puppets)
+            try
             {
-                puppet.mindState.mentalStateHandler.TryStartMentalState(stateDef, reason, forced, forceWake, causedByMood, otherPawn, transitionSilently, causedByDamage, causedByPsycast);
+                shouldStartMentalState = true;
+                foreach (var puppet in hediff.puppets)
+                {
+                    puppet.mindState.mentalStateHandler.TryStartMentalState(stateDef, reason, forced, forceWake, causedByMood, otherPawn, transitionSilently, causedByDamage, causedByPsycast);
+                }
             }
-            shouldStartMentalState = false;
+            finally
+            {
+                shouldStartMentalState = false;
+            }
         }
-        if (!shouldStartMentalState && ___pawn.IsPuppet())
-        {
-            return false;
-        }
-        return true;
     }
 }
